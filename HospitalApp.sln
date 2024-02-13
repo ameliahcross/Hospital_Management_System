@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalApp", "HospitalApp\HospitalApp.csproj", "{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{40C56BAD-79DC-4568-A8AF-B6CCEDE13DB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E3FB5787-B131-45DF-834E-430F28E0D831}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9DD40518-C260-4167-8FD2-552B6CA43A19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9F35783E-0E2C-42BA-8D94-1B95E1E3B295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalApp.Core.Application", "HospitalApp.Core.Application\HospitalApp.Core.Application.csproj", "{9AD38E72-F677-481D-B7DB-2124F25FEB66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalApp.Core.Domain", "HospitalApp.Core.Domain\HospitalApp.Core.Domain.csproj", "{002F4F59-A428-4D58-B601-4FD834D1C740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalApp.Infrastructure.Persistence", "HospitalApp.Infrastructure.Persistence\HospitalApp.Infrastructure.Persistence.csproj", "{6056B23B-4AA7-4ABA-8545-ED0F47CB288F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{E732980A-0879-424C-B387-9295063670FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD38E72-F677-481D-B7DB-2124F25FEB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD38E72-F677-481D-B7DB-2124F25FEB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD38E72-F677-481D-B7DB-2124F25FEB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD38E72-F677-481D-B7DB-2124F25FEB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002F4F59-A428-4D58-B601-4FD834D1C740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002F4F59-A428-4D58-B601-4FD834D1C740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002F4F59-A428-4D58-B601-4FD834D1C740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002F4F59-A428-4D58-B601-4FD834D1C740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6056B23B-4AA7-4ABA-8545-ED0F47CB288F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6056B23B-4AA7-4ABA-8545-ED0F47CB288F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6056B23B-4AA7-4ABA-8545-ED0F47CB288F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6056B23B-4AA7-4ABA-8545-ED0F47CB288F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42EBD216-AF61-465E-BCF2-5EDC505CCA30}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3FB5787-B131-45DF-834E-430F28E0D831} = {40C56BAD-79DC-4568-A8AF-B6CCEDE13DB9}
+		{9DD40518-C260-4167-8FD2-552B6CA43A19} = {40C56BAD-79DC-4568-A8AF-B6CCEDE13DB9}
+		{9F35783E-0E2C-42BA-8D94-1B95E1E3B295} = {40C56BAD-79DC-4568-A8AF-B6CCEDE13DB9}
+		{9AD38E72-F677-481D-B7DB-2124F25FEB66} = {E3FB5787-B131-45DF-834E-430F28E0D831}
+		{002F4F59-A428-4D58-B601-4FD834D1C740} = {E3FB5787-B131-45DF-834E-430F28E0D831}
+		{6056B23B-4AA7-4ABA-8545-ED0F47CB288F} = {9DD40518-C260-4167-8FD2-552B6CA43A19}
+		{E732980A-0879-424C-B387-9295063670FF} = {9F35783E-0E2C-42BA-8D94-1B95E1E3B295}
+		{8B90158F-2E15-4C3D-802C-DFE3B5B4EE5B} = {E732980A-0879-424C-B387-9295063670FF}
+	EndGlobalSection
+EndGlobal

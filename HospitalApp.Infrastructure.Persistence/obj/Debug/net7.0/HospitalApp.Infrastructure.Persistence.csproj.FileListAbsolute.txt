@@ -1,0 +1,17 @@
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.deps.json
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Core.Application.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Core.Domain.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Core.Domain.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Core.Application.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.csproj.AssemblyReference.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.AssemblyInfoInputs.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.AssemblyInfo.cs
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.csproj.CoreCompileInputs.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.csproj.CopyComplete
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/refint/HospitalApp.Infrastructure.Persistence.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/ref/HospitalApp.Infrastructure.Persistence.dll
