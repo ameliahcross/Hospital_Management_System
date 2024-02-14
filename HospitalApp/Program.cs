@@ -1,4 +1,4 @@
-﻿using HospitalApp.Infrastructure.Persistence;
+﻿using HospitalApp.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

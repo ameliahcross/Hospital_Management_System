@@ -1,5 +1,6 @@
 ﻿using System;
 using HospitalApp.Core.Domain.Entities;
+using HospitalApp.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalApp.Infrastructure.Persistence.Repositories

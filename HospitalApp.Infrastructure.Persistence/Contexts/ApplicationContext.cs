@@ -2,10 +2,11 @@
 using HospitalApp.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HospitalApp.Infrastructure.Persistence
+namespace HospitalApp.Infrastructure.Persistence.Contexts
 {
 	public class ApplicationContext : DbContext
-	{
+
+    {
         public DbSet<User> Users { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
@@ -14,7 +15,6 @@ namespace HospitalApp.Infrastructure.Persistence
         public DbSet<LabResult> LabResults { get; set; }
 
         // constructor
-        public ApplicationContext() { }
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
 
@@ -23,6 +23,7 @@ namespace HospitalApp.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // fluent API
+            base.OnModelCreating(modelBuilder);
 
             #region tables
             modelBuilder.Entity<User>().ToTable("Users");

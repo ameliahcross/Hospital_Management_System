@@ -18,19 +18,16 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HospitalApp.Core.Domain\HospitalApp.Core.Domain.csproj" />
     <ProjectReference Include="..\HospitalApp.Core.Application\HospitalApp.Core.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Models\" />
     <None Remove="Repositories\" />
     <None Remove="Contexts\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Repositories\" />
     <Folder Include="Contexts\" />
   </ItemGroup>
