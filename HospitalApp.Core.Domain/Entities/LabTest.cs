@@ -5,7 +5,11 @@ namespace HospitalApp.Core.Domain.Entities
 {
     public class LabTest : BaseEntity
     {
-        public string Name { get; set; } 
+        public string Name { get; set; }
+
+        // relationships
+        public IEnumerable<LabResult> LabResults { get; set; }
+
     }
 }
 

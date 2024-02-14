@@ -14,12 +14,14 @@ namespace HospitalApp.Core.Domain.Entities
         public string Result { get; set; }
         public LabResultStatus Status { get; set; }
 
-        // Relaciones
-        public int PatientId { get; set; }
+        // relationships
         public Patient Patient { get; set; }
-
-        public int LabTestId { get; set; }
         public LabTest LabTest { get; set; }
+
+        // foreing keys
+        public int LabTestId { get; set; }
+        public int PatientId { get; set; }
+
     }
 }
 

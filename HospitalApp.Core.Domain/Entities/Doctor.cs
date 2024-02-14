@@ -11,6 +11,9 @@ namespace HospitalApp.Core.Domain.Entities
         public string PhoneNumber { get; set; }
         public string IdentificationNumber { get; set; }
         public byte[] Photo { get; set; }
+
+        // relationships
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
 

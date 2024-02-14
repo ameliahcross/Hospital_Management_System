@@ -17,12 +17,13 @@ namespace HospitalApp.Core.Domain.Entities
         public string Reason { get; set; }
         public AppointmentStatus Status { get; set; }
 
-        // Relaciones
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
-
+        // foreign keys
         public int DoctorId { get; set; }
+        public int PatientId { get; set; }
+
+        // relationships
         public Doctor Doctor { get; set; }
+        public Patient Patient { get; set; }
     }
 }
 
