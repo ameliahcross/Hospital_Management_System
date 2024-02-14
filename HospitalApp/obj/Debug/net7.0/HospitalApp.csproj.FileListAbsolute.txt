@@ -332,6 +332,7 @@
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.DotNet.Scaffolding.Shared.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.InMemory.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
@@ -355,6 +356,7 @@
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Mono.TextTemplating.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/Newtonsoft.Json.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/NuGet.Common.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/NuGet.Configuration.dll
@@ -365,6 +367,7 @@
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/NuGet.ProjectModel.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/NuGet.Protocol.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/NuGet.Versioning.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/System.CodeDom.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/System.Composition.AttributedModel.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/System.Composition.Convention.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp/bin/Debug/net7.0/System.Composition.Hosting.dll

@@ -14,6 +14,7 @@ namespace HospitalApp.Infrastructure.Persistence
         public DbSet<LabResult> LabResults { get; set; }
 
         // constructor
+        public ApplicationContext() { }
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
 

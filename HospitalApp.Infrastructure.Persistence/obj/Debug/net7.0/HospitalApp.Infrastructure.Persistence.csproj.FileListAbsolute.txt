@@ -1,4 +1,5 @@
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.deps.json
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.runtimeconfig.json
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Infrastructure.Persistence.pdb
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/bin/Debug/net7.0/HospitalApp.Core.Application.dll
@@ -14,4 +15,5 @@
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/refint/HospitalApp.Infrastructure.Persistence.dll
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/HospitalApp.Infrastructure.Persistence.genruntimeconfig.cache
 /Users/Amelia/repos/HospitalApp/HospitalApp.Infrastructure.Persistence/obj/Debug/net7.0/ref/HospitalApp.Infrastructure.Persistence.dll
