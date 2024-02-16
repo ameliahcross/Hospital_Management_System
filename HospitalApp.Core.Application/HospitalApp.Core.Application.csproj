@@ -16,9 +16,21 @@
   <ItemGroup>
     <None Remove="ViewModels\" />
     <None Remove="Services\" />
+    <None Remove="ViewModels\Appointment\" />
+    <None Remove="ViewModels\Patient\" />
+    <None Remove="ViewModels\Doctor\" />
+    <None Remove="ViewModels\LabTest\" />
+    <None Remove="ViewModels\LabResult\" />
+    <None Remove="ViewModels\User\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
+    <Folder Include="ViewModels\Appointment\" />
+    <Folder Include="ViewModels\Patient\" />
+    <Folder Include="ViewModels\Doctor\" />
+    <Folder Include="ViewModels\LabTest\" />
+    <Folder Include="ViewModels\LabResult\" />
+    <Folder Include="ViewModels\User\" />
   </ItemGroup>
 </Project>
