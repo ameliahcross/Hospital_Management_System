@@ -22,6 +22,9 @@
     <None Remove="ViewModels\LabTest\" />
     <None Remove="ViewModels\LabResult\" />
     <None Remove="ViewModels\User\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Interfaces\Repositories\" />
+    <None Remove="Interfaces\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -32,5 +35,8 @@
     <Folder Include="ViewModels\LabTest\" />
     <Folder Include="ViewModels\LabResult\" />
     <Folder Include="ViewModels\User\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Interfaces\Services\" />
   </ItemGroup>
 </Project>

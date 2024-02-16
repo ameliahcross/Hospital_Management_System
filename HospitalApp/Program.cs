@@ -1,14 +1,13 @@
 ﻿using HospitalApp.Infrastructure.Persistence.Contexts;
+using HospitalApp.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddPersistenceLayer(builder.Configuration);
 
-builder.Services.AddDbContext<ApplicationContext>(options =>
-    options.UseSqlServer(builder.Configuration
-            .GetConnectionString("DefaultConnection")));
+// Add services to the container.
+builder.Services.AddControllersWithViews(); 
 
 var app = builder.Build();
 

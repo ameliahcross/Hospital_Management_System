@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Numerics;
+using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalApp.Infrastructure.Persistence.Repositories
 {
-	public class AppointmentRepository
+	public class AppointmentRepository : IAppointmentRepository
 	{
         private readonly ApplicationContext _dbContext;
 
@@ -44,4 +45,3 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
         }
     }
 }
-
