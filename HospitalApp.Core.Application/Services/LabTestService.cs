@@ -5,7 +5,7 @@ using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.Services
 {
-	public class LabTestService
+	public class LabTestService : ILabTestService
 	{
         private readonly ILabTestRepository _repository;
 

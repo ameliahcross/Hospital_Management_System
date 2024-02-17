@@ -1,4 +1,5 @@
-﻿using HospitalApp.Core.Application.Interfaces.Services;
+﻿using HospitalApp.Core.Application.Interfaces.Repositories;
+using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +11,12 @@ namespace HospitalApp.Core.Application
 		{
             #region "Services"
             services.AddTransient<IAppointmentService, AppointmentService>();
-            #endregion
+            services.AddTransient<IDoctorService, DoctorService>();
+            services.AddTransient<ILabResultService, LabResultService>();
+            services.AddTransient<ILabTestService, LabTestService>();
+            services.AddTransient<IPatientSevice, PatientService>();
+            services.AddTransient<IUserService, UserService>();
+            #endregion            
         }
 
     }
