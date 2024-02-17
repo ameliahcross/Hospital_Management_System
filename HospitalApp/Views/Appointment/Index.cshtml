@@ -1,0 +1,61 @@
+﻿@model List<HospitalApp.Core.Application.ViewModels.AppointmentViewModel>
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Citas</h3>
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <div class="d-flex justify-content-end mb-3">
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm btn-dark">
+                    Nueva <i class="fas fa-plus"></i>
+                </a>
+            </div>
+            @if (Model == null || !Model.Any())
+            {
+                <div class="alert alert-danger" role="alert">
+                    No se encontraron citas.
+                </div>
+            }
+            else
+            {
+                <table class="table table-success table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Doctor</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.PatientName</td>
+                                <td>@item.DoctorName</td>
+                                <td>@item.Date</td>
+                                <td>@item.Time</td>
+                                <td>@item.Status</td>
+                                <td class="text-end">
+                                    <a class="me-3" asp-controller="Genre" asp-action="Edit" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-controller="Genre" asp-action="Delete" asp-route-id="@item.Id">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

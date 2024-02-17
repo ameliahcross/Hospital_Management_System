@@ -29,6 +29,11 @@ namespace HospitalApp.Infrastructure.Persistence
 
             #region "Repositories"
             services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+            services.AddTransient<IDoctorRepository, DoctorRepository>();
+            services.AddTransient<ILabResultRepository, LabResultRepository>();
+            services.AddTransient<ILabTestRepository, LabTestRepository>();
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             #endregion
         }
 

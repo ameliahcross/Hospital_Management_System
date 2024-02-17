@@ -27,6 +27,7 @@ namespace HospitalApp.Core.Application.ViewModels
 
         public AppointmentViewModel()
         {
+            
         }
     }
 }
