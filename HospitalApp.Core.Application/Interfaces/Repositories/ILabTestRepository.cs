@@ -3,13 +3,9 @@ using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.Interfaces.Repositories
 {
-	public interface ILabTestRepository
-	{
-        Task AddAsync(LabTest labTest);
-        Task UpdateAsync(LabTest labTest);
-        Task DeleteAsync(LabTest labTest);
-        Task<List<LabTest>> GetAllAsync();
-        Task<LabTest> GetByIdAsync(int id);
+	public interface ILabTestRepository : IGenericRepository<LabTest>
+    {
+        // Agregar las firmas de los methods nuevos que no tiene GenericRepository
     }
 }
 

@@ -11,6 +11,7 @@ namespace HospitalApp.Core.Application.Services
     {
         private readonly IAppointmentRepository _repository;
 
+       // Este constructor dice que esta clase depende de IGenericRepository<Appointment>
         public AppointmentService(IAppointmentRepository repository)
         {
             _repository = repository;
