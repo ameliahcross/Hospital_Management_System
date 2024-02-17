@@ -14,14 +14,15 @@ namespace HospitalApp.Infrastructure.Persistence
 		{
             #region "Contexts configuration"
 
-            if (true)
+            if (config.GetValue<bool>("UseInMemoryDatabase"))
             {
                 services.AddDbContext<ApplicationContext>(option => option.UseInMemoryDatabase("InMemoryDb")); 
             }
             else
             {
                 var connectionString = config.GetConnectionString("DefaultConnection");
-                services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+                services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString,
+                    migrations => migrations.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
             }
          
             #endregion

@@ -1,0 +1,15 @@
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.csproj.AssemblyReference.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.AssemblyInfoInputs.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.AssemblyInfo.cs
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.csproj.CoreCompileInputs.cache
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/bin/Debug/net7.0/HospitalApp.Core.Application.deps.json
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/bin/Debug/net7.0/HospitalApp.Core.Application.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/bin/Debug/net7.0/HospitalApp.Core.Application.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/bin/Debug/net7.0/HospitalApp.Core.Domain.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/bin/Debug/net7.0/HospitalApp.Core.Domain.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.csproj.CopyComplete
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/refint/HospitalApp.Core.Application.dll
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/HospitalApp.Core.Application.pdb
+/Users/Amelia/repos/HospitalApp/HospitalApp.Core.Application/obj/Debug/net7.0/ref/HospitalApp.Core.Application.dll

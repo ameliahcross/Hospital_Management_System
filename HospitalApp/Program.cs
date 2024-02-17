@@ -4,9 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddPersistenceLayer(builder.Configuration);
-
 // Add services to the container.
+builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddControllersWithViews(); 
 
 var app = builder.Build();

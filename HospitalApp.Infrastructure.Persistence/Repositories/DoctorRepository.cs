@@ -1,11 +1,12 @@
 ﻿using System;
+using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalApp.Infrastructure.Persistence.Repositories
 {
-	public class DoctorRepository
+	public class DoctorRepository : IDoctorRepository
 	{
         private readonly ApplicationContext _dbContext;
 

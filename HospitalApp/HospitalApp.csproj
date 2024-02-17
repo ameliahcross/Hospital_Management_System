@@ -27,4 +27,20 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Appointment\" />
+    <None Remove="Views\Doctor\" />
+    <None Remove="Views\LabResult\" />
+    <None Remove="Views\LabTest\" />
+    <None Remove="Views\Patient\" />
+    <None Remove="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Appointment\" />
+    <Folder Include="Views\Doctor\" />
+    <Folder Include="Views\LabResult\" />
+    <Folder Include="Views\LabTest\" />
+    <Folder Include="Views\Patient\" />
+    <Folder Include="Views\User\" />
+  </ItemGroup>
 </Project>
