@@ -86,8 +86,20 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                 #region appointment
                 modelBuilder.Entity<Appointment>(entity =>
                 {
-                    entity.Property(a => a.Date).IsRequired();
-                    entity.Property(a => a.Time).IsRequired();
+                    entity.Property(a => a.Date)
+                            .IsRequired()
+                            .HasColumnType("date")
+                            .HasConversion(
+                                d => d.ToDateTime(new TimeOnly()),
+                                d => DateOnly.FromDateTime(d)
+                            );
+                    entity.Property(a => a.Time)
+                            .IsRequired()
+                            .HasColumnType("time")
+                            .HasConversion(
+                                  t => t.ToTimeSpan(),
+                                  t => TimeOnly.FromTimeSpan(t)
+                              ); ;
                     entity.Property(a => a.Reason).IsRequired();
                 });
                 #endregion
@@ -115,7 +127,12 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                     entity.Property(p => p.PhoneNumber).IsRequired();
                     entity.Property(p => p.Address).IsRequired();
                     entity.Property(p => p.IdentificationNumber).IsRequired();
-                    entity.Property(p => p.DateOfBirth).IsRequired();
+                    entity.Property(p => p.DateOfBirth)
+                            .IsRequired()
+                            .HasConversion(
+                                d => d.ToDateTime(new TimeOnly()),
+                                d => DateOnly.FromDateTime(d)
+                            );
                     entity.Property(p => p.IsSmoker).IsRequired();
                     entity.Property(p => p.HasAllergies).IsRequired();
                     entity.Property(p => p.Photo).IsRequired();

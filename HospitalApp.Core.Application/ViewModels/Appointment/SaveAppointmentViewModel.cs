@@ -12,11 +12,11 @@ namespace HospitalApp.Core.Application.ViewModels.Appointment
 
         [Required(ErrorMessage = "Debe seleccionar una fecha")]
         [DataType(DataType.Date, ErrorMessage = "Debe ingresar una fecha válida")]
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
 
         [Required(ErrorMessage = "Debe seleccionar una hora")]
         [DataType(DataType.Time, ErrorMessage = "Debe ingresar una hora válida")]
-        public DateTime Time { get; set; }
+        public TimeOnly Time { get; set; }
 
         [Required(ErrorMessage = "Debe colocar una razón para la cita")]
         public string Reason { get; set; }
@@ -24,11 +24,11 @@ namespace HospitalApp.Core.Application.ViewModels.Appointment
         [Required(ErrorMessage = "Debe seleccionar un estatus")]
         public AppointmentStatus Status { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el doctor")]
-        public string PatientName { get; set; }
+        //[Required(ErrorMessage = "Debe colocar el nombre del paciente")]
+        //public string PatientName { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el paciente")]
-        public string DoctorName { get; set; }
+        //[Required(ErrorMessage = "Debe colocar el nombre del doctor")]
+        //public string DoctorName { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el doctor")]
         public int DoctorId { get; set; }

@@ -28,7 +28,7 @@ namespace HospitalApp.Core.Application.ViewModels.Patient
 
         [Required(ErrorMessage = "Debe seleccionar una fecha")]
         [DataType(DataType.Date, ErrorMessage = "Debe ingresar una fecha válida")]
-        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
+        public DateOnly DateOfBirth { get; set; } = DateOnly.MinValue;
 
         [Required(ErrorMessage = "Debe ingresar un valor")]
         public bool IsSmoker { get; set; }

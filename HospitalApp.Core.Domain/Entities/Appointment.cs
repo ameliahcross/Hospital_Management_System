@@ -1,19 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 using HospitalApp.Core.Domain.Common;
 
 namespace HospitalApp.Core.Domain.Entities
 {
     public enum AppointmentStatus
     {
-        PendingAppointment,
-        PendingResults,
-        Completed
+        Pendiente,
+        Pendiente_Resultados,
+        Completada
     }
 
     public class Appointment : BaseEntity
 	{
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
+        public DateOnly Date { get; set; }
+        public TimeOnly Time { get; set; }
         public string Reason { get; set; }
         public AppointmentStatus Status { get; set; }
 

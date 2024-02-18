@@ -1,10 +1,17 @@
 ﻿@model HospitalApp.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+@using HospitalApp.Core.Domain.Entities
 
 @{
     bool editMode = Model.Id == 0 ? false : true;
 
     ViewData["Title"] = editMode == false ? "Crear cita" : "Editar cita";
 }
+
+@{
+    var enumType = typeof(AppointmentStatus);
+    var enumValues = Enum.GetValues(enumType).Cast<AppointmentStatus>();
+}
+
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -16,39 +23,57 @@
                 <div class="card-body">
                     <form asp-controller="Appointment" asp-action="@(editMode? "Edit": "Create")" method="post">
                         <div class="mb-3">
-                            <label asp-for="PatientName" class="form-label">Nombre</label>
-                            <input asp-for="PatientName" class="form-control" placeholder="Ingrese el nombre del doctor">
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                            <label asp-for="PatientId" class="form-label">Nombre del paciente</label>
+                            <select asp-for="PatientId" class="form-select">
+                                <option value="0">Seleccione</option>
+                                @foreach (var patient in Model.Patients)
+                                {
+                                    <option value="@patient.Id">@($"{patient.FirstName} {patient.LastName}")</option>
+                                }
+                            </select>
+                            <span asp-validation-for="PatientId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="LastName" class="form-label">Apellido</label>
-                            <input asp-for="LastName" class="form-control" placeholder="Ingrese el apellido del doctor">
-                            <span asp-validation-for="LastName" class="text-danger"></span>
+                            <label asp-for="DoctorId" class="form-label">Nombre del doctor</label>
+                            <select asp-for="DoctorId" class="form-select">
+                                <option value="0">Seleccione</option>
+                                @foreach (var doctor in Model.Doctors)
+                                {
+                                    <option value="@doctor.Id">@($"{doctor.FirstName} {doctor.LastName}")</option>
+                                }
+                            </select>
+                            <span asp-validation-for="DoctorId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="PhoneNumber" class="form-label">Teléfono</label>
-                            <input asp-for="PhoneNumber" class="form-control" placeholder="Ingrese el teléfono del doctor">
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            <label asp-for="Date" class="form-label">Fecha de la cita</label>
+                            <input asp-for="Date" type="date" placeholder="mm/dd/yyyy" min="@DateTime.Today.ToString("yyyy-MM-dd")" max="" class="form-control">
+                            <span asp-validation-for="Date" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="Email" class="form-label">Email</label>
-                            <input asp-for="Email" class="form-control" placeholder="Ingrese el correo del doctor">
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <label asp-for="Time" class="form-label">Hora</label>
+                            <input asp-for="Time" type="time" min="" max="" class="form-control">
+                            <span asp-validation-for="Time" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="IdentificationNumber" class="form-label">Cédula</label>
-                            <input asp-for="IdentificationNumber" class="form-control" placeholder="Ingrese la cédula del doctor">
-                            <span asp-validation-for="IdentificationNumber" class="text-danger"></span>
+                            <label asp-for="Reason" class="form-label">Razón</label>
+                            <input asp-for="Reason" class="form-control" placeholder="Ingrese la causa de la cita">
+                            <span asp-validation-for="Reason" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="Photo" class="form-label">Enlace de la imagen</label>
-                            <input asp-for="Photo" class="form-control" placeholder="URL de la imagen">
-                            <span asp-validation-for="Photo" class="text-danger"></span>
+                            <label asp-for="Status" class="form-label">Estatus</label>
+                            <select disabled asp-for="Status" class="form-select">
+                                <option value="0" selected>@Model.Status</option>
+                                @*@foreach (var value in Enum.GetValues(typeof(AppointmentStatus)))
+                                {
+                                    <option value="@value">@value.ToString()</option>
+                                }*@
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
 
                         <input type="hidden" asp-for="Id">
-                        <button type="submit" class="btn btn-outline-success">Guardar</button>
-                        <a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary">Volver atrás</a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a asp-controller="Appointment" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
                     </form>
                 </div>
             </div>

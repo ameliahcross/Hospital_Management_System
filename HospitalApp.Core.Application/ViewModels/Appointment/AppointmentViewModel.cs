@@ -11,10 +11,10 @@ namespace HospitalApp.Core.Application.ViewModels
         public int Id { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime Time { get; set; }
+        public TimeOnly Time { get; set; }
 
         public string Reason { get; set; }
         public AppointmentStatus Status { get; set; }

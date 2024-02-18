@@ -30,6 +30,7 @@
                             <th>Doctor</th>
                             <th>Fecha</th>
                             <th>Hora</th>
+                            <th>Razón</th>
                             <th>Estado</th>
                             <th class="text-end">Acciones</th>
                         </tr>
@@ -42,13 +43,14 @@
                                 <td>@item.DoctorName</td>
                                 <td>@item.Date</td>
                                 <td>@item.Time</td>
+                                <td>@item.Reason</td>
                                 <td>@item.Status</td>
                                 <td class="text-end">
-                                    <a class="me-3" asp-controller="Genre" asp-action="Edit" asp-route-id="@item.Id">
-                                        <i class="fas fa-edit"></i>
+                                    <a class="me-3" asp-controller="Appointment" asp-action="Edit" asp-route-id="@item.Id">
+                                        <i class="fas fa-edit text-black"></i>
                                     </a>
-                                    <a asp-controller="Genre" asp-action="Delete" asp-route-id="@item.Id">
-                                        <i class="fas fa-trash"></i>
+                                    <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@item.Id">
+                                        <i class="fas fa-trash text-black"></i>
                                     </a>
                                 </td>
                             </tr>

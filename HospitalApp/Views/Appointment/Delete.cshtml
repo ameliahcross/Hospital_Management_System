@@ -1,4 +1,4 @@
-﻿@model HospitalApp.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+﻿@model HospitalApp.Core.Application.ViewModels.AppointmentViewModel
 
 @{
     ViewData["Title"] = "Eliminar Cita";
@@ -8,11 +8,13 @@
     <div class="row justify-content-center" style="min-height: 100vh;">
         <div class="col-8 text-center mt-4">
             <h6 class="mb-4 mt-4">
-                ¿Está seguro(a) que desea eliminar la cita del paciente "@Model.PatientName" con el/la doctor(a) "@Model.DoctorName"?
+                ¿Está seguro(a) que desea eliminar la cita del paciente
+                "@($"{@Model.PatientName}")"
+                con el/la doctor(a) "@($"{@Model.DoctorName}")"?
             </h6>
             @*<div class="alert alert-warning" role="alert">
-                Se eliminarán todas las  que pertenecen a <span class="text-danger">@Model.Name</span>
-            </div>*@
+                    Se eliminarán todas las  que pertenecen a <span class="text-danger">@Model.Name</span>
+                </div>*@
             <hr />
             <form class="text-right" method="post" asp-controller="Appointment" asp-action="DeletePost">
                 <button class="btn btn-outline-danger btn-sm me-2" type="submit">Eliminar</button>
