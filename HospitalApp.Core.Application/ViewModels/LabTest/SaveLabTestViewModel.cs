@@ -10,9 +10,6 @@ namespace HospitalApp.Core.Application.ViewModels.LabTest
         [Required(ErrorMessage = "Debe ingresar el nombre de la prueba")]
         public string Name { get; set; }
 
-        public SaveLabTestViewModel()
-		{
-		}
 	}
 }
 

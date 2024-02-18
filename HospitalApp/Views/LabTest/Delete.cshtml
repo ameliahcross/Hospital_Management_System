@@ -1,0 +1,21 @@
+﻿@model HospitalApp.Core.Application.ViewModels.LabTest.SaveLabTestViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Prueba";
+}
+
+<div class="container h-100">
+    <div class="row justify-content-center" style="min-height: 100vh;">
+        <div class="col-8 text-center mt-4">
+            <h6 class="mb-4 mt-4">
+                ¿Está seguro(a) que desea eliminar la prueba "@Model.Name"?
+            </h6>
+            <hr />
+            <form class="text-right" method="post" asp-controller="LabTest" asp-action="DeletePost">
+                <button class="btn btn-outline-danger btn-sm me-2" type="submit">Eliminar</button>
+                <a class="btn btn-outline-secondary btn-sm" asp-controller="LabTest" asp-action="Index">Cancelar</a>
+                <input type="hidden" asp-for="Id">
+            </form>
+        </div>
+    </div>
+</div>

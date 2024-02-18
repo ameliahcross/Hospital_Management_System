@@ -1,0 +1,32 @@
+﻿@model HospitalApp.Core.Application.ViewModels.LabTest.SaveLabTestViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+
+    ViewData["Title"] = editMode == false ? "Crear prueba" : "Editar prueba";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="LabTest" asp-action="@(editMode? "Edit": "Create")" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Nombre</label>
+                            <input asp-for="Name" class="form-control" placeholder="Ingrese el nombre de la prueba">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a asp-controller="LabTest" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
