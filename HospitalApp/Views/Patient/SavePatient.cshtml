@@ -42,7 +42,11 @@
                         </div>
                         <div class="mb-3">
                             <label asp-for="DateOfBirth" class="form-label">Fecha de nacimiento</label>
-                            <input asp-for="DateOfBirth" type="date" placeholder="mm/dd/yyyy" min="1900-01-01" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" placeholder="Ingrese la fecha de nacimiento del paciente">
+                            <input asp-for="DateOfBirth"
+                                   type="date"
+                                   class="form-control"
+                                   min="@(Model.Id == 0 ? DateTime.Today.ToString("yyyy-MM-dd") : null)"
+                                   value="@(Model.Id != 0 ? Model.DateOfBirth.ToString("yyyy-MM-dd") : "")">
                             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                         </div>
                         <div class="mb-3">

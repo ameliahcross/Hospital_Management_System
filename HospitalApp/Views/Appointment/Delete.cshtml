@@ -1,4 +1,4 @@
-﻿@model HospitalApp.Core.Application.ViewModels.AppointmentViewModel
+﻿@model HospitalApp.Core.Application.ViewModels.Appointment.DeleteAppointmentViewModel
 
 @{
     ViewData["Title"] = "Eliminar Cita";
@@ -12,9 +12,6 @@
                 "@($"{@Model.PatientName}")"
                 con el/la doctor(a) "@($"{@Model.DoctorName}")"?
             </h6>
-            @*<div class="alert alert-warning" role="alert">
-                    Se eliminarán todas las  que pertenecen a <span class="text-danger">@Model.Name</span>
-                </div>*@
             <hr />
             <form class="text-right" method="post" asp-controller="Appointment" asp-action="DeletePost">
                 <button class="btn btn-outline-danger btn-sm me-2" type="submit">Eliminar</button>

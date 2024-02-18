@@ -1,4 +1,5 @@
 ﻿using HospitalApp.Core.Application.Interfaces.Services;
+using HospitalApp.Core.Application.Services;
 using HospitalApp.Core.Application.ViewModels.Appointment;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,7 +74,19 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            return View(await _service.GetByIdSaveViewModel(id));
+            var appointmentViewModel =  await _service.GetByIdSaveViewModel(id);
+
+            var patient = await _servicePatient.GetByIdSaveViewModel(appointmentViewModel.PatientId);
+            var doctor = await _serviceDr.GetByIdSaveViewModel(appointmentViewModel.DoctorId);
+
+            var deleteAppointmentViewModel = new DeleteAppointmentViewModel
+            {
+                Id = appointmentViewModel.Id,
+                PatientName = $"{patient.FirstName} {patient.LastName}",
+                DoctorName = $"{doctor.FirstName} {doctor.LastName}"
+            };
+
+            return View(deleteAppointmentViewModel); 
         }
 
         [HttpPost]

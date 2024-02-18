@@ -44,8 +44,6 @@ namespace HospitalApp.Core.Application.Services
             appointmentViewModel.Status = appointment.Status;
             appointmentViewModel.PatientId = appointment.PatientId;
             appointmentViewModel.DoctorId = appointment.DoctorId;
-            //appointmentViewModel.PatientName = appointment.Patient.FirstName + " " + appointment.Patient.LastName;
-            //appointmentViewModel.DoctorName = appointment.Doctor.FirstName + " " + appointment.Doctor.LastName;
             return appointmentViewModel;
         }
 
