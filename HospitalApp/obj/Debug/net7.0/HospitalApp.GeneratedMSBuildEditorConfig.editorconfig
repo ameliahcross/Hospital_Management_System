@@ -16,12 +16,44 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = /Users/Amelia/repos/HospitalApp/HospitalApp
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Appointment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwb2ludG1lbnQvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Appointment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwb2ludG1lbnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Appointment/SaveAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXBwb2ludG1lbnQvU2F2ZUFwcG9pbnRtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Doctor/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdG9yL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Doctor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdG9yL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Doctor/SaveDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdG9yL1NhdmVEb2N0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Patient/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF0aWVudC9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF0aWVudC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Patient/SavePatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF0aWVudC9TYXZlUGF0aWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/Amelia/repos/HospitalApp/HospitalApp/Views/Shared/Error.cshtml]

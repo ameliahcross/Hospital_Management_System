@@ -25,6 +25,12 @@ namespace HospitalApp.Core.Application.ViewModels.Appointment
         public AppointmentStatus Status { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el doctor")]
+        public string PatientName { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el paciente")]
+        public string DoctorName { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el doctor")]
         public int DoctorId { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar el paciente")]

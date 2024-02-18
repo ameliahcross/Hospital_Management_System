@@ -13,10 +13,7 @@ namespace HospitalApp.Core.Domain.Entities
         public DateTime DateOfBirth { get; set; }
         public bool IsSmoker { get; set; }
         public bool HasAllergies { get; set; }
-        public byte[] Photo { get; set; }
-
-        // foreign keys
-        public int PatientId { get; set; }
+        public string Photo { get; set; }
 
         // relationships
         public IEnumerable<Appointment> Appointments { get; set; }

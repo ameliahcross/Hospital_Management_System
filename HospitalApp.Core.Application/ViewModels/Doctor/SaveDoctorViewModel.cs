@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using HospitalApp.Core.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace HospitalApp.Core.Application.ViewModels.Doctor
 {
@@ -19,15 +20,18 @@ namespace HospitalApp.Core.Application.ViewModels.Doctor
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un número de teléfono")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "El teléfono solo puede contener números")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "El teléfono debe contener 10 dígitos")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar una cédula")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "La cédula solo puede contener números")]
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "La cédula debe contener 11 dígitos")]
         public string IdentificationNumber { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar una foto")]
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
+
+        //[DataType(DataType.Upload)]
+        //public IFormFile File { get; set; }
 
         public SaveDoctorViewModel()
         {

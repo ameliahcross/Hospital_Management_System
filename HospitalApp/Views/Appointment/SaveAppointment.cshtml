@@ -1,0 +1,57 @@
+﻿@model HospitalApp.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+
+    ViewData["Title"] = editMode == false ? "Crear cita" : "Editar cita";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Appointment" asp-action="@(editMode? "Edit": "Create")" method="post">
+                        <div class="mb-3">
+                            <label asp-for="PatientName" class="form-label">Nombre</label>
+                            <input asp-for="PatientName" class="form-control" placeholder="Ingrese el nombre del doctor">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Apellido</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Ingrese el apellido del doctor">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Teléfono</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Ingrese el teléfono del doctor">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Ingrese el correo del doctor">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="IdentificationNumber" class="form-label">Cédula</label>
+                            <input asp-for="IdentificationNumber" class="form-control" placeholder="Ingrese la cédula del doctor">
+                            <span asp-validation-for="IdentificationNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Photo" class="form-label">Enlace de la imagen</label>
+                            <input asp-for="Photo" class="form-control" placeholder="URL de la imagen">
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id">
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                        <a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

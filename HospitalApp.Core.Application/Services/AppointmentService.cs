@@ -19,7 +19,7 @@ namespace HospitalApp.Core.Application.Services
 
         public async Task<List<AppointmentViewModel>> GetAllViewModel()
         {
-            var appointmentsList = await _repository.GetAllAsync();
+            var appointmentsList = await _repository.GetAllAsyncWithRelations();
 
             return appointmentsList.Select(appointment => new AppointmentViewModel
             {
@@ -35,14 +35,17 @@ namespace HospitalApp.Core.Application.Services
 
         public async Task<SaveAppointmentViewModel> GetByIdSaveViewModel(int id)
         {
-            var appointment = await _repository.GetByIdAsync(id);
+            var appointment = await _repository.GetByIdAsyncWithRelations(id);
             SaveAppointmentViewModel appointmentViewModel = new();
+            appointmentViewModel.Id = appointment.Id;
             appointmentViewModel.Date = appointment.Date;
             appointmentViewModel.Time = appointment.Time;
             appointmentViewModel.Reason = appointment.Reason;
             appointmentViewModel.Status = appointment.Status;
             appointmentViewModel.PatientId = appointment.PatientId;
             appointmentViewModel.DoctorId = appointment.DoctorId;
+            appointmentViewModel.PatientName = appointment.Patient.FirstName + " " + appointment.Patient.LastName;
+            appointmentViewModel.DoctorName = appointment.Doctor.FirstName + " " + appointment.Doctor.LastName;
             return appointmentViewModel;
         }
 

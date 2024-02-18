@@ -1,7 +1,6 @@
 ﻿using System;
 using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Application.Interfaces.Services;
-using HospitalApp.Core.Application.ViewModels.Doctor;
 using HospitalApp.Core.Application.ViewModels.User;
 using HospitalApp.Core.Domain.Entities;
 
@@ -32,10 +31,11 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
-        public async Task<UserViewModel> GetByIdSaveViewModel(int id)
+        public async Task<SaveUserViewModel> GetByIdSaveViewModel(int id)
         {
             var user = await _repository.GetByIdAsync(id);
-            UserViewModel userViewModel = new();
+            SaveUserViewModel userViewModel = new();
+            userViewModel.Id = userViewModel.Id;
             userViewModel.FirstName = user.FirstName;
             userViewModel.LastName = user.LastName;
             userViewModel.Email = user.Email;
@@ -46,7 +46,7 @@ namespace HospitalApp.Core.Application.Services
             return userViewModel;
         }
 
-        public async Task Update(UserViewModel userToSave)
+        public async Task Update(SaveUserViewModel userToSave)
         {
             User user = new();
             user.Id = userToSave.Id;
@@ -60,7 +60,7 @@ namespace HospitalApp.Core.Application.Services
             await _repository.UpdateAsync(user);
         }
 
-        public async Task Add(UserViewModel userToCreate)
+        public async Task Add(SaveUserViewModel userToCreate)
         {
             User user = new();
             user.Id = userToCreate.Id;

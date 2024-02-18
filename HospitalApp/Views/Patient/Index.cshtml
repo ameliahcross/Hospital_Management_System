@@ -1,0 +1,80 @@
+﻿@model List<HospitalApp.Core.Application.ViewModels.Patient.PatientViewModel>
+
+@{
+    ViewData["Title"] = "Patients";
+}
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Pacientes</h3>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="row mb-3">
+                <div class="col text-end">
+                    <a asp-controller="Patient" asp-action="Create" class="btn btn-sm btn-success">
+                        Nuevo <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    @if (Model == null || !Model.Any())
+                    {
+                        <div class="alert alert-danger text-center" role="alert">
+                            No se encontraron pacientes
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-success table-striped mx-auto">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th>Cédula</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Fumador(a)</th>
+                                    <th>Alérgico(a)</th>
+                                    <th>Foto</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.PhoneNumber</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.IdentificationNumber</td>
+                                        <td>@item.DateOfBirth.ToString("MM/dd/yyyy")</td>
+                                        <td>@(item.IsSmoker ? "Sí" : "No")</td>
+                                        <td>@(item.HasAllergies ? "Sí" : "No")</td>
+                                        <td>
+                                            <img width="100px" src="@item.Photo" alt="Foto de paciente" class="img-fluid">
+                                        </td>
+                                        <td class="text-end">
+                                            <a class="me-3" asp-controller="Patient" asp-action="Edit" asp-route-id="@item.Id">
+                                                <i class="fas fa-edit text-black"></i>
+                                            </a>
+                                            <a asp-controller="Patient" asp-action="Delete" asp-route-id="@item.Id">
+                                                <i class="fas fa-trash text-black"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+                @*<small class="text-success mt-2">
+                    <i class="fas fa-arrows-alt-h"></i>
+                    Desliza horizontalmente si no ves la tabla completa.
+                </small>*@
+            </div>
+        </div>
+    </div>
+</div>

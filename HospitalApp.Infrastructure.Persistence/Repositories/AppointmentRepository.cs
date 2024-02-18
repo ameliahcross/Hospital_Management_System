@@ -15,5 +15,22 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
 		{
             _dbContext = dbContext;
         }
+
+        public async Task<List<Appointment>> GetAllAsyncWithRelations()
+        {
+            return await _dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .ToListAsync();
+        }
+
+        public async Task<Appointment> GetByIdAsyncWithRelations(int id)
+        {
+            return await _dbContext.Appointments
+                 .Include(a => a.Doctor)
+                 .Include(a => a.Patient)
+                 .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
     }
 }

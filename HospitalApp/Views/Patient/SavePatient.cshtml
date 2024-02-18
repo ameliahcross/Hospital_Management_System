@@ -1,0 +1,86 @@
+﻿@model HospitalApp.Core.Application.ViewModels.Patient.SavePatientViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+
+    ViewData["Title"] = editMode == false ? "Crear paciente" : "Editar paciente";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Patient" asp-action="@(editMode? "Edit": "Create")" method="post">
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label">Nombre</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Ingrese el nombre del paciente">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Apellido</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Ingrese el apellido del paciente">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Teléfono</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Ingrese el teléfono del paciente">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Dirección</label>
+                            <input asp-for="Address" class="form-control" placeholder="Ingrese la dirección del paciente">
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="IdentificationNumber" class="form-label">Cédula</label>
+                            <input asp-for="IdentificationNumber" class="form-control" placeholder="Ingrese la cédula del paciente">
+                            <span asp-validation-for="IdentificationNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DateOfBirth" class="form-label">Fecha de nacimiento</label>
+                            <input asp-for="DateOfBirth" type="date" placeholder="mm/dd/yyyy" min="1900-01-01" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" placeholder="Ingrese la fecha de nacimiento del paciente">
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="IsSmoker" class="form-label">Fumador(a)</label>
+                            <div class="form-check-inline">
+                                <input asp-for="IsSmoker" class="form-check-input" type="radio" id="IsSmokerYes" value="true">
+                                <label class="form-check-label" for="IsSmokerYes">Sí</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input asp-for="IsSmoker" class="form-check-input" type="radio" id="IsSmokerNo" value="false">
+                                <label class="form-check-label" for="IsSmokerNo">No</label>
+                            </div>
+                            <span asp-validation-for="IsSmoker" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="HasAllergies" class="form-label">Alergias</label>
+                            <div class="form-check-inline">
+                                <input asp-for="HasAllergies" class="form-check-input" type="radio" id="HasAllergiesYes" value="true">
+                                <label class="form-check-label" for="HasAllergiesYes">Sí</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input asp-for="HasAllergies" class="form-check-input" type="radio" id="HasAllergiesNo" value="false">
+                                <label class="form-check-label" for="HasAllergiesNo">No</label>
+                            </div>
+                            <span asp-validation-for="HasAllergies" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Photo" class="form-label">Enlace de la imagen</label>
+                            <input asp-for="Photo" class="form-control" placeholder="URL de la imagen">
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id">
+                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                        <a asp-controller="Patient" asp-action="Index" class="btn btn-outline-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

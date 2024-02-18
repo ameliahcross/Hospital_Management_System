@@ -18,7 +18,6 @@ namespace HospitalApp.Core.Application.Services
         public async Task<List<PatientViewModel>> GetAllViewModel()
         {
             var patientsList = await _repository.GetAllAsync();
-
             return patientsList.Select(patient => new PatientViewModel
             {
                 Id = patient.Id,
@@ -26,6 +25,7 @@ namespace HospitalApp.Core.Application.Services
                 LastName = patient.LastName,
                 PhoneNumber = patient.PhoneNumber,
                 IdentificationNumber = patient.IdentificationNumber,
+                Address = patient.Address,
                 DateOfBirth = patient.DateOfBirth,
                 IsSmoker = patient.IsSmoker,
                 HasAllergies = patient.HasAllergies,
@@ -33,14 +33,16 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
-        public async Task<PatientViewModel> GetByIdSaveViewModel(int id)
+        public async Task<SavePatientViewModel> GetByIdSaveViewModel(int id)
         {
             var patient = await _repository.GetByIdAsync(id);
-            PatientViewModel patientViewModel = new();
+            SavePatientViewModel patientViewModel = new();
+            patientViewModel.Id = patient.Id;
             patientViewModel.FirstName = patient.FirstName;
             patientViewModel.LastName = patient.LastName;
             patientViewModel.DateOfBirth = patient.DateOfBirth;
             patientViewModel.PhoneNumber = patient.PhoneNumber;
+            patientViewModel.Address = patient.Address;
             patientViewModel.HasAllergies = patient.HasAllergies;
             patientViewModel.IsSmoker = patient.IsSmoker;
             patientViewModel.IdentificationNumber = patient.IdentificationNumber;
@@ -49,13 +51,15 @@ namespace HospitalApp.Core.Application.Services
             return patientViewModel;
         }
 
-        public async Task Update(PatientViewModel patientToSave)
+        public async Task Update(SavePatientViewModel patientToSave)
         {
             Patient patient = new();
             patient.Id = patientToSave.Id;
             patient.FirstName = patientToSave.FirstName;
             patient.LastName = patientToSave.LastName;
             patient.HasAllergies = patientToSave.HasAllergies;
+            patient.Address = patientToSave.Address;
+            patient.DateOfBirth = patientToSave.DateOfBirth;
             patient.PhoneNumber = patientToSave.PhoneNumber;
             patient.IsSmoker = patientToSave.IsSmoker;
             patient.IdentificationNumber = patientToSave.IdentificationNumber;
@@ -64,13 +68,15 @@ namespace HospitalApp.Core.Application.Services
             await _repository.UpdateAsync(patient);
         }
 
-        public async Task Add(PatientViewModel patientToCreate)
+        public async Task Add(SavePatientViewModel patientToCreate)
         {
             Patient patient = new();
             patient.Id = patientToCreate.Id;
             patient.FirstName = patientToCreate.FirstName;
             patient.LastName = patientToCreate.LastName;
             patient.HasAllergies = patientToCreate.HasAllergies;
+            patient.Address = patientToCreate.Address;
+            patient.DateOfBirth = patientToCreate.DateOfBirth;
             patient.PhoneNumber = patientToCreate.PhoneNumber;
             patient.IsSmoker = patientToCreate.IsSmoker;
             patient.IdentificationNumber = patientToCreate.IdentificationNumber;

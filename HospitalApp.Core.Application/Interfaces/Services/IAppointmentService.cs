@@ -4,13 +4,9 @@ using HospitalApp.Core.Application.ViewModels.Appointment;
 
 namespace HospitalApp.Core.Application.Interfaces.Services
 {
-	public interface IAppointmentService
+	public interface IAppointmentService : IGenericService<AppointmentViewModel, SaveAppointmentViewModel>
 	{
-        Task<List<AppointmentViewModel>> GetAllViewModel();
-        Task<SaveAppointmentViewModel> GetByIdSaveViewModel(int id);
-        Task Update(SaveAppointmentViewModel appointmentToSave);
-        Task Add(SaveAppointmentViewModel appointmentToCreate);
-        Task Delete(int id);
+        
     }
 }
 

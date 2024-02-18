@@ -24,16 +24,16 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
-        public async Task<LabTestViewModel> GetByIdSaveViewModel(int id)
+        public async Task<SaveLabTestViewModel> GetByIdSaveViewModel(int id)
         {
             var labTest = await _repository.GetByIdAsync(id);
-            LabTestViewModel labTestViewModel = new();
+            SaveLabTestViewModel labTestViewModel = new();
             labTestViewModel.Id = labTest.Id;
             labTestViewModel.Name = labTest.Name;
             return labTestViewModel;
         }
 
-        public async Task Update(LabTestViewModel labTestToSave)
+        public async Task Update(SaveLabTestViewModel labTestToSave)
         {
             LabTest labTest = new();
             labTest.Id = labTestToSave.Id;
@@ -41,7 +41,7 @@ namespace HospitalApp.Core.Application.Services
             await _repository.UpdateAsync(labTest);
         }
 
-        public async Task Add(LabTestViewModel labTestToCreate)
+        public async Task Add(SaveLabTestViewModel labTestToCreate)
         {
             LabTest labTest = new();
             labTest.Id = labTestToCreate.Id;

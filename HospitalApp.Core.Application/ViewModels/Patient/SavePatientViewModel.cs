@@ -1,10 +1,14 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalApp.Core.Application.ViewModels.Patient
 {
 	public class SavePatientViewModel
 	{
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Debe ingresar un nombre")]
         public string FirstName { get; set; }
 
@@ -12,19 +16,19 @@ namespace HospitalApp.Core.Application.ViewModels.Patient
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un número de teléfono")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "El teléfono solo puede contener números")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "El teléfono debe contener 10 dígitos")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar una dirección")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar una cédula")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "La cédula solo puede contener números")]
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "La cédula debe contener 11 dígitos")]
         public string IdentificationNumber { get; set; }
 
         [Required(ErrorMessage = "Debe seleccionar una fecha")]
         [DataType(DataType.Date, ErrorMessage = "Debe ingresar una fecha válida")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
 
         [Required(ErrorMessage = "Debe ingresar un valor")]
         public bool IsSmoker { get; set; }
@@ -33,7 +37,10 @@ namespace HospitalApp.Core.Application.ViewModels.Patient
         public bool HasAllergies { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar una foto")]
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
+
+        //[DataType(DataType.Upload)]
+        //public IFormFile File { get; set; }
 
         public SavePatientViewModel()
 		{

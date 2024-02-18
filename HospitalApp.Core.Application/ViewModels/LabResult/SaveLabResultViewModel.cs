@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using HospitalApp.Core.Application.ViewModels.Doctor;
 using HospitalApp.Core.Application.ViewModels.LabTest;
 using HospitalApp.Core.Application.ViewModels.Patient;
 using HospitalApp.Core.Domain.Entities;

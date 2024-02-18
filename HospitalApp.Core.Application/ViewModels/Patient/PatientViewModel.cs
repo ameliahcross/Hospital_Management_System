@@ -12,7 +12,7 @@ namespace HospitalApp.Core.Application.ViewModels.Patient
         public DateTime DateOfBirth { get; set; }
         public bool IsSmoker { get; set; }
         public bool HasAllergies { get; set; }
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
 
         public PatientViewModel()
 		{

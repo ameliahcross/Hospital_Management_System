@@ -32,34 +32,31 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
-        public async Task<LabResultViewModel> GetByIdSaveViewModel(int id)
+        public async Task<SaveLabResultViewModel> GetByIdSaveViewModel(int id)
         {
             var labResult = await _repository.GetByIdAsync(id);
-            LabResultViewModel labResultViewModel = new();
-            labResultViewModel.ResultName = labResult.Result;
+            SaveLabResultViewModel labResultViewModel = new();
+            labResultViewModel.Id = labResult.Id;
+            labResultViewModel.Name = labResult.Result;
             labResultViewModel.PatientId = labResult.PatientId;
-            labResultViewModel.PatientName = labResult.Patient.FirstName + " " + labResult.Patient.LastName;
-            labResultViewModel.PatientIdentificationNumber = labResult.Patient.IdentificationNumber;
             labResultViewModel.LabTestId = labResult.LabTestId;
-            labResultViewModel.LabTestName = labResult.LabTest.Name;
             labResultViewModel.Status = labResult.Status;
             return labResultViewModel;
         }
 
-        public async Task Update(LabResultViewModel labResultToSave)
+        public async Task Update(SaveLabResultViewModel labResultToSave)
         {
             LabResult labResult = new();
             labResult.Id = labResultToSave.Id;
-            labResult.Result = labResultToSave.ResultName;
             labResult.Status = labResultToSave.Status;
             await _repository.UpdateAsync(labResult);
         }
 
-        public async Task Add(LabResultViewModel labResultToCreate)
+        public async Task Add(SaveLabResultViewModel labResultToCreate)
         {
             LabResult labResult = new();
             labResult.Id = labResultToCreate.Id;
-            labResult.Result = labResultToCreate.ResultName;
+            labResult.Result = labResultToCreate.Name;
             labResult.Status = labResultToCreate.Status;
 
             await _repository.AddAsync(labResult);

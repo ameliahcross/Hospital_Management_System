@@ -31,10 +31,11 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
-        public async Task<DoctorViewModel> GetByIdSaveViewModel(int id)
+        public async Task<SaveDoctorViewModel> GetByIdSaveViewModel(int id)
         {
             var doctor = await _repository.GetByIdAsync(id);
-            DoctorViewModel doctorViewModel = new();
+            SaveDoctorViewModel doctorViewModel = new();
+            doctorViewModel.Id = doctor.Id;
             doctorViewModel.FirstName = doctor.FirstName;
             doctorViewModel.LastName = doctor.LastName;
             doctorViewModel.Email = doctor.Email;
@@ -45,7 +46,7 @@ namespace HospitalApp.Core.Application.Services
             return doctorViewModel;
         }
 
-        public async Task Update(DoctorViewModel doctorToSave)
+        public async Task Update(SaveDoctorViewModel doctorToSave)
         {
             Doctor doctor = new();
             doctor.Id = doctorToSave.Id;
@@ -59,7 +60,7 @@ namespace HospitalApp.Core.Application.Services
             await _repository.UpdateAsync(doctor);
         }
 
-        public async Task Add(DoctorViewModel doctorToCreate)
+        public async Task Add(SaveDoctorViewModel doctorToCreate)
         {
             Doctor doctor = new();
             doctor.Id = doctorToCreate.Id;
