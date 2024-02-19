@@ -77,7 +77,7 @@ namespace HospitalApp.Core.Application.Services
                     Result = "",
                     Status = LabResultStatus.Pendiente,
                     LabTestId = labResultSaveViewModel.LabTestId,
-                    PatientId = labResultSaveViewModel.PatientId
+                    AppointmentId = labResultSaveViewModel.AppointmentId
                 };
                 await _repository.AddAsync(labResult);
             }

@@ -20,7 +20,10 @@ namespace HospitalApp.Core.Domain.Entities
 
         // foreing keys
         public int LabTestId { get; set; }
-        public int PatientId { get; set; }
+        public int AppointmentId { get; set; } // nuevo FK para crear resultados
+
+        // navigation property
+        public Appointment Appointment { get; set; }
 
     }
 }

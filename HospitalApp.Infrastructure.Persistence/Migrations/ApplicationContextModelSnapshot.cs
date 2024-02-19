@@ -103,6 +103,9 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LabTestId")
                         .HasColumnType("int");
 
@@ -117,6 +120,8 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
 
                     b.HasIndex("LabTestId");
 
@@ -245,6 +250,12 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.LabResult", b =>
                 {
+                    b.HasOne("HospitalApp.Core.Domain.Entities.Appointment", "Appointment")
+                        .WithMany("LabResults")
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HospitalApp.Core.Domain.Entities.LabTest", "LabTest")
                         .WithMany("LabResults")
                         .HasForeignKey("LabTestId")
@@ -254,12 +265,19 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.HasOne("HospitalApp.Core.Domain.Entities.Patient", "Patient")
                         .WithMany("LabResults")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appointment");
 
                     b.Navigation("LabTest");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Appointment", b =>
+                {
+                    b.Navigation("LabResults");
                 });
 
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Doctor", b =>

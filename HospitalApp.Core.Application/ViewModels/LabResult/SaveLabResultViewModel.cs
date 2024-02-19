@@ -18,6 +18,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 
         public int LabTestId { get; set; }
         public int PatientId { get; set; }
+        public int AppointmentId { get; set; }
 
         public IEnumerable<PatientViewModel> Patients { get; set; }
         public IEnumerable<LabTestViewModel> LabTests { get; set; }

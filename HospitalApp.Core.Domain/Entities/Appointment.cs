@@ -26,6 +26,9 @@ namespace HospitalApp.Core.Domain.Entities
         // relationships
         public Doctor Doctor { get; set; }
         public Patient Patient { get; set; }
+
+        // navigation property
+        public ICollection<LabResult> LabResults { get; set; }
     }
 }
 

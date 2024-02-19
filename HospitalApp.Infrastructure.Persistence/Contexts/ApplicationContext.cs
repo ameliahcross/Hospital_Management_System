@@ -56,10 +56,16 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Patient>()
-                .HasMany(p => p.LabResults)
-                .WithOne(l => l.Patient)
-                .HasForeignKey(l => l.PatientId)
+            //modelBuilder.Entity<Patient>()
+            //    .HasMany(p => p.LabResults)
+            //    .WithOne(l => l.Patient)
+            //    .HasForeignKey(l => l.PatientId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Appointment>()
+                .HasMany(a => a.LabResults)
+                .WithOne(lr => lr.Appointment)
+                .HasForeignKey(lr => lr.AppointmentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<LabTest>()
