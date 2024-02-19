@@ -74,10 +74,10 @@ namespace HospitalApp.Core.Application.Services
             {
                 var labResult = new LabResult
                 {
-                    Result = labResultSaveViewModel.Result,
+                    Result = "",
                     Status = LabResultStatus.Pendiente,
                     LabTestId = labResultSaveViewModel.LabTestId,
-                    PatientId = labResultSaveViewModel.PatientId
+                    //PatientId = labResultSaveViewModel.PatientId
                 };
                 await _repository.AddAsync(labResult);
             }

@@ -26,11 +26,6 @@ namespace HospitalApp.Core.Application.ViewModels
         public bool IsPendingConsultation { get; set; }
         public bool IsPendingResults { get; set; }
         public bool IsCompleted { get; set; }
-
-        public AppointmentViewModel()
-        {
-            
-        }
     }
 }
 

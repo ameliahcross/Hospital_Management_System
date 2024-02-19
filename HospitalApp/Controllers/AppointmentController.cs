@@ -109,7 +109,7 @@ namespace HospitalApp.Controllers
 
         //manejo de pruebas y resultados
 
-        public async Task<IActionResult> SelectLabTests(int appointmentId)
+        public async Task<IActionResult> SelectLabTests(int Id)
         {
             var availableLabTests = await _serviceTest.GetAvailableLabTestsAsync();
 
@@ -122,7 +122,7 @@ namespace HospitalApp.Controllers
 
             var model = new SelectLabTestsViewModel
             {
-                AppointmentId = appointmentId,
+                Id = Id,
                 AvailableLabTests = labTestSelections
             };
             return View(model);
@@ -133,46 +133,38 @@ namespace HospitalApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Inicializa la lista de LabResult para crear
-                var labResultsToCreate = new List<SaveLabResultViewModel>();
-
-                // Itera a través de las pruebas seleccionadas y crea SaveLabResultViewModel para cada una
-                foreach (var selectedTest in model.SelectedLabTests.Where(lt => lt.IsSelected))
-                {
-                    var labResultViewModel = new SaveLabResultViewModel
+                // Lista para crear los resultados de las pruebas seleccionadas
+                var labResultsToCreate = model.AvailableLabTests
+                    .Where(lt => lt.IsSelected) // Filtra solo las pruebas seleccionadas
+                    .Select(lt => new SaveLabResultViewModel
                     {
-                        LabTestId = selectedTest.LabTestId,
-                        PatientId = model.PatientId, // Asumiendo que tienes el PatientId disponible
-                        Result = "Resultado pendiente", // Puedes establecer un valor predeterminado o permitir que el usuario ingrese uno
-                        Status = LabResultStatus.Pendiente
-                    };
-                    labResultsToCreate.Add(labResultViewModel);
-                }
+                        LabTestId = lt.LabTestId,// Debes asegurarte de tener el PatientId aquí
+                        Result = "Resultado pendiente", // Puedes poner un resultado predeterminado o el real
+                        Status = LabResultStatus.Pendiente // El estado inicial de la prueba
+                    }).ToList();
 
-                // Llama al servicio para crear los resultados del laboratorio
+                // Crear los resultados de laboratorio en la base de datos
                 await _serviceResult.CreateLabResultsAsync(labResultsToCreate);
 
-                // Cambia el estado de la cita a Pendiente de Resultados
-                await _service.ChangeAppointmentStatusAsync(model.AppointmentId, AppointmentStatus.Pendiente_Resultados);
+                // Cambiar el estado de la cita a 'Pendiente de Resultados'
+                await _service.ChangeAppointmentStatusAsync(model.Id, AppointmentStatus.Pendiente_Resultados);
 
-                // Redirige al usuario a la vista de índice
+                // Redirigir al usuario al listado de citas
                 return RedirectToAction("Index");
             }
 
-            // Si el modelo no es válido, vuelve a cargar la vista SelectLabTests con el modelo actual
-            // para que el usuario pueda corregir cualquier error
-            var availableLabTests = await _serviceTest.GetAvailableLabTestsAsync();
-
-            // Convierte LabTestViewModel a LabTestSelection
-            model.AvailableLabTests = availableLabTests.Select(lt => new SelectLabTestsViewModel.LabTestSelection
-            {
-                LabTestId = lt.Id, // Asumiendo que tienes una propiedad Id en tu LabTestViewModel
-                Name = lt.Name,    // Asumiendo que tienes una propiedad Name en tu LabTestViewModel
-                IsSelected = false // Inicialmente no seleccionado
-            }).ToList();
+            // Si el modelo no es válido, recargar la vista con el modelo para corrección
+            model.AvailableLabTests = (await _serviceTest.GetAvailableLabTestsAsync())
+                     .Select(lt => new LabTestSelection
+                     {
+                         LabTestId = lt.Id, // Asumiendo que la clase LabTestViewModel tiene una propiedad Id.
+                         Name = lt.Name,    // Asumiendo que la clase LabTestViewModel tiene una propiedad Name.
+                         IsSelected = false // Inicializar como no seleccionado.
+                     }).ToList();
 
             return View("SelectLabTests", model);
         }
+
     }
 }
 

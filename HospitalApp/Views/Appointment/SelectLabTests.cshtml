@@ -13,8 +13,8 @@
                 </div>
                 <div class="card-body">
                     <form asp-controller="Appointment" asp-action="PerformLabTests" method="post">
-                        <input type="hidden" asp-for="AppointmentId" />
-                        <input type="hidden" asp-for="PatientId" />
+                        <input type="hidden" asp-for="Id" />
+                        @*<input type="hidden" asp-for="PatientId" />*@
                         @for (int i = 0; i < Model.AvailableLabTests.Count; i++)
                         {
                             <div class="form-check">
