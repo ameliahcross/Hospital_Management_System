@@ -26,9 +26,11 @@
   <ItemGroup>
     <None Remove="Repositories\" />
     <None Remove="Contexts\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Contexts\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

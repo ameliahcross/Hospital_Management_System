@@ -109,7 +109,7 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<int>("LabTestId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
@@ -263,17 +263,13 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", "Patient")
+                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", null)
                         .WithMany("LabResults")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
 
                     b.Navigation("Appointment");
 
                     b.Navigation("LabTest");
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Appointment", b =>

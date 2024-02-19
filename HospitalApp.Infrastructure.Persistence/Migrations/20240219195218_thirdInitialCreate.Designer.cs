@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240217215024_RemovePatientIdProperty")]
-    partial class RemovePatientIdProperty
+    [Migration("20240219195218_thirdInitialCreate")]
+    partial class thirdInitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
@@ -49,8 +49,8 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("time");
 
                     b.HasKey("Id");
 
@@ -106,10 +106,13 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LabTestId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
@@ -120,6 +123,8 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
 
                     b.HasIndex("LabTestId");
 
@@ -162,7 +167,8 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("HasAllergies")
                         .HasColumnType("bit");
@@ -248,21 +254,30 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.LabResult", b =>
                 {
+                    b.HasOne("HospitalApp.Core.Domain.Entities.Appointment", "Appointment")
+                        .WithMany("LabResults")
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HospitalApp.Core.Domain.Entities.LabTest", "LabTest")
                         .WithMany("LabResults")
                         .HasForeignKey("LabTestId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", "Patient")
+                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", null)
                         .WithMany("LabResults")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Appointment");
 
                     b.Navigation("LabTest");
+                });
 
-                    b.Navigation("Patient");
+            modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Appointment", b =>
+                {
+                    b.Navigation("LabResults");
                 });
 
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Doctor", b =>

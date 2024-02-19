@@ -15,7 +15,6 @@ namespace HospitalApp.Core.Domain.Entities
         public LabResultStatus Status { get; set; }
 
         // relationships
-        //public Patient Appointment { get; set; }
         public LabTest LabTest { get; set; }
 
         // foreing keys
@@ -26,5 +25,6 @@ namespace HospitalApp.Core.Domain.Entities
         public Appointment Appointment { get; set; }
 
     }
+
 }
 
