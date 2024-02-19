@@ -8,6 +8,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 {
 	public class SaveLabResultViewModel
 	{
+
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar el resultado")]
@@ -17,7 +18,6 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
         public LabResultStatus Status { get; set; }
 
         public int LabTestId { get; set; }
-        public int PatientId { get; set; }
         public int AppointmentId { get; set; }
 
         public IEnumerable<PatientViewModel> Patients { get; set; }

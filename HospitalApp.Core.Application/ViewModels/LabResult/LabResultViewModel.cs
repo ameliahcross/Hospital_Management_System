@@ -13,8 +13,6 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
         public string LabTestName { get; set; }
         public LabResultStatus Status { get; set; }
 
-
-
         public IEnumerable<PatientViewModel> Patients { get; set; }
         public IEnumerable<LabTestViewModel> LabTests { get; set; }
 

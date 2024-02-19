@@ -24,8 +24,8 @@ namespace HospitalApp.Core.Application.Services
                 Id = labResult.Id,
                 //ResultName = labResult.Result,
                 //PatientId = labResult.PatientId,
-                PatientName = labResult.Patient.FirstName + " " + labResult.Patient.LastName,
-                PatientIdentificationNumber = labResult.Patient.IdentificationNumber,
+                //PatientName = labResult.Patient.FirstName + " " + labResult.Patient.LastName,
+                //PatientIdentificationNumber = labResult.Patient.IdentificationNumber,
                 //LabTestId = labResult.LabTestId,
                 LabTestName = labResult.LabTest.Name,
                 Status = labResult.Status

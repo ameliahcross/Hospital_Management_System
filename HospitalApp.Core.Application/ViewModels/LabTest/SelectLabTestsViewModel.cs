@@ -4,6 +4,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabTest
 	public class SelectLabTestsViewModel
 	{
         public int Id { get; set; }
+        //public int AppointmentId { get; set; }
 
         public List<LabTestSelection> AvailableLabTests { get; set; }
 

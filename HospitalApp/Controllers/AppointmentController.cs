@@ -123,6 +123,7 @@ namespace HospitalApp.Controllers
             var model = new SelectLabTestsViewModel
             {
                 Id = Id,
+                //AppointmentId = AppointmentId,
                 AvailableLabTests = labTestSelections
             };
             return View(model);
@@ -133,23 +134,17 @@ namespace HospitalApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Lista para crear los resultados de las pruebas seleccionadas
                 var labResultsToCreate = model.AvailableLabTests
-                    .Where(lt => lt.IsSelected) // Filtra solo las pruebas seleccionadas
+                    .Where(lt => lt.IsSelected)
                     .Select(lt => new SaveLabResultViewModel
                     {
-                        LabTestId = lt.LabTestId,// Debes asegurarte de tener el PatientId aquí
-                        Result = "Resultado pendiente", // Puedes poner un resultado predeterminado o el real
-                        Status = LabResultStatus.Pendiente // El estado inicial de la prueba
+                        LabTestId = lt.LabTestId,
+                        Result = "Resultado pendiente",
+                        Status = LabResultStatus.Pendiente, 
                     }).ToList();
 
-                // Crear los resultados de laboratorio en la base de datos
                 await _serviceResult.CreateLabResultsAsync(labResultsToCreate);
-
-                // Cambiar el estado de la cita a 'Pendiente de Resultados'
                 await _service.ChangeAppointmentStatusAsync(model.Id, AppointmentStatus.Pendiente_Resultados);
-
-                // Redirigir al usuario al listado de citas
                 return RedirectToAction("Index");
             }
 
