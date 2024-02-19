@@ -19,8 +19,9 @@
                         {
                             <div class="form-check">
                                 <input asp-for="@Model.AvailableLabTests[i].IsSelected" class="form-check-input" />
-                                <label class="form-check-label">@Model.AvailableLabTests[i].Name</label>
+                                <label asp-for="@Model.AvailableLabTests[i].IsSelected" class="form-check-label">@Model.AvailableLabTests[i].Name</label>
                                 <input type="hidden" asp-for="@Model.AvailableLabTests[i].LabTestId" />
+                                <input type="hidden" asp-for="@Model.AvailableLabTests[i].Name" />
                             </div>
                         }
                         <button type="submit" class="btn btn-success">Realizar pruebas</button>
