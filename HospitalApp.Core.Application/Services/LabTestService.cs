@@ -8,10 +8,12 @@ namespace HospitalApp.Core.Application.Services
 	public class LabTestService : ILabTestService
 	{
         private readonly ILabTestRepository _repository;
+        private readonly IAppointmentRepository _repositoryAppointment;
 
-        public LabTestService(ILabTestRepository repository)
+        public LabTestService(ILabTestRepository repository, IAppointmentRepository repositoryAppointment)
 		{
             _repository = repository;
+            _repositoryAppointment = repositoryAppointment;
         }
 
         public async Task<List<LabTestViewModel>> GetAllViewModel()
@@ -54,6 +56,20 @@ namespace HospitalApp.Core.Application.Services
             var labTest = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(labTest);
         }
+
+        // adicional
+        public async Task<List<LabTestViewModel>> GetAvailableLabTestsAsync()
+        {
+            var labTests = await _repository.GetAllAsync();
+            var labTestViewModels = labTests.Select(lt => new LabTestViewModel
+            {
+                Id = lt.Id,
+                Name = lt.Name
+            }).ToList();
+            return labTestViewModels;
+        }
+
+
     }
 }
 

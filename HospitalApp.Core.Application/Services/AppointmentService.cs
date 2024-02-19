@@ -3,6 +3,8 @@ using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels;
 using HospitalApp.Core.Application.ViewModels.Appointment;
+using HospitalApp.Core.Application.ViewModels.LabTest;
+using HospitalApp.Core.Application.ViewModels.LabResult;
 using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.Services
@@ -10,11 +12,15 @@ namespace HospitalApp.Core.Application.Services
     public class AppointmentService : IAppointmentService
     {
         private readonly IAppointmentRepository _repository;
+        private readonly ILabResultRepository _repositoryLabResult;
+        private readonly ILabTestRepository _repositoryLabTest;
 
-       // Este constructor dice que esta clase depende de IGenericRepository<Appointment>
-        public AppointmentService(IAppointmentRepository repository)
+        // Este constructor dice que esta clase depende de IGenericRepository<Appointment>
+        public AppointmentService(IAppointmentRepository repository, ILabResultRepository repositoryLabResult, ILabTestRepository repositoryLabTest)
         {
             _repository = repository;
+            _repositoryLabTest = repositoryLabTest;
+            _repositoryLabResult = repositoryLabResult;
         }
 
         public async Task<List<AppointmentViewModel>> GetAllViewModel()
@@ -80,6 +86,20 @@ namespace HospitalApp.Core.Application.Services
             var appointment = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(appointment);
         }
+
+        // gestion de pruebas
+
+        public async Task ChangeAppointmentStatusAsync(int appointmentId, AppointmentStatus newStatus)
+        {
+            var appointment = await _repository.GetByIdAsync(appointmentId);
+            if (appointment != null)
+            {
+                appointment.Status = newStatus;
+                await _repository.UpdateAsync(appointment);
+            }
+        }
+
+        
 
     }
 }

@@ -1,0 +1,70 @@
+﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.LabResultViewModel>
+
+
+@{
+    ViewData["Title"] = "Resultados Pendientes";
+}
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Resultados</h3>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="row mb-3">
+                <div class="col text-end">
+                    <a asp-controller="LabResult" asp-action="Create" class="btn btn-sm btn-success">
+                        Nuevo <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    @if (Model == null || !Model.Any())
+                    {
+                        <div class="alert alert-danger text-center" role="alert">
+                            No se encontraron resultados
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-success table-striped mx-auto">
+                            <thead>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <th>Cédula</th>
+                                    @*<th>Prueba</th>*@
+                                    <th>Estatus</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.PatientName</td>
+                                        <td>@item.PatientIdentificationNumber</td>
+                                        @*<td>@item.LabTestName</td>*@
+                                        <td>@item.Status</td>
+                                        <td class="text-end">
+                                            <a class="me-3 text-info" asp-controller="LabResult" asp-action="Edit" asp-route-id="@item.Id">
+                                                Reportar
+                                                @*<i class="fas fa-edit text-black"></i>*@
+                                            </a>
+                                            @*<a asp-controller="LabResult" asp-action="Delete" asp-route-id="@item.Id">
+                                                <i class="fas fa-trash text-black"></i>
+                                            </a>*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+                @*<small class="text-success mt-2">
+                    <i class="fas fa-arrows-alt-h"></i>
+                    Desliza horizontalmente si no ves la tabla completa.
+                </small>*@
+            </div>
+        </div>
+    </div>
+</div>

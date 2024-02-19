@@ -22,11 +22,11 @@ namespace HospitalApp.Core.Application.Services
             return labResultsList.Select(labResult => new LabResultViewModel
             {
                 Id = labResult.Id,
-                ResultName = labResult.Result,
-                PatientId = labResult.PatientId,
+                //ResultName = labResult.Result,
+                //PatientId = labResult.PatientId,
                 PatientName = labResult.Patient.FirstName + " " + labResult.Patient.LastName,
                 PatientIdentificationNumber = labResult.Patient.IdentificationNumber,
-                LabTestId = labResult.LabTestId,
+                //LabTestId = labResult.LabTestId,
                 LabTestName = labResult.LabTest.Name,
                 Status = labResult.Status
             }).ToList();
@@ -37,9 +37,9 @@ namespace HospitalApp.Core.Application.Services
             var labResult = await _repository.GetByIdAsync(id);
             SaveLabResultViewModel labResultViewModel = new();
             labResultViewModel.Id = labResult.Id;
-            labResultViewModel.Name = labResult.Result;
-            labResultViewModel.PatientId = labResult.PatientId;
-            labResultViewModel.LabTestId = labResult.LabTestId;
+            //labResultViewModel.Name = labResult.Result;
+            //labResultViewModel.PatientId = labResult.PatientId;
+            //labResultViewModel.LabTestId = labResult.LabTestId;
             labResultViewModel.Status = labResult.Status;
             return labResultViewModel;
         }
@@ -56,7 +56,7 @@ namespace HospitalApp.Core.Application.Services
         {
             LabResult labResult = new();
             labResult.Id = labResultToCreate.Id;
-            labResult.Result = labResultToCreate.Name;
+            //labResult.Result = labResultToCreate.Name;
             labResult.Status = labResultToCreate.Status;
 
             await _repository.AddAsync(labResult);
@@ -66,6 +66,21 @@ namespace HospitalApp.Core.Application.Services
         {
             var labResult = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(labResult);
+        }
+
+        public async Task CreateLabResultsAsync(List<SaveLabResultViewModel> labResultSaveViewModels)
+        {
+            foreach (var labResultSaveViewModel in labResultSaveViewModels)
+            {
+                var labResult = new LabResult
+                {
+                    Result = labResultSaveViewModel.Result,
+                    Status = LabResultStatus.Pendiente,
+                    LabTestId = labResultSaveViewModel.LabTestId,
+                    PatientId = labResultSaveViewModel.PatientId
+                };
+                await _repository.AddAsync(labResult);
+            }
         }
     }
 }

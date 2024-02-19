@@ -5,8 +5,8 @@ namespace HospitalApp.Core.Domain.Entities
 {
     public enum LabResultStatus
     {
-        Pending,
-        Completed
+        Pendiente,
+        Completado
     }
 
     public class LabResult : BaseEntity

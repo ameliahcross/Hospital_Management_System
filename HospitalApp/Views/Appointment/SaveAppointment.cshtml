@@ -67,10 +67,6 @@
                             <label asp-for="Status" class="form-label">Estatus</label>
                             <select disabled asp-for="Status" class="form-select">
                                 <option value="0" selected>@Model.Status</option>
-                                @*@foreach (var value in Enum.GetValues(typeof(AppointmentStatus)))
-                                {
-                                    <option value="@value">@value.ToString()</option>
-                                }*@
                             </select>
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>

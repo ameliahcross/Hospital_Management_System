@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using HospitalApp.Core.Application.ViewModels.Doctor;
-using HospitalApp.Core.Application.ViewModels.Patient;
 using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.ViewModels
@@ -24,6 +22,10 @@ namespace HospitalApp.Core.Application.ViewModels
 
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
+
+        public bool IsPendingConsultation { get; set; }
+        public bool IsPendingResults { get; set; }
+        public bool IsCompleted { get; set; }
 
         public AppointmentViewModel()
         {

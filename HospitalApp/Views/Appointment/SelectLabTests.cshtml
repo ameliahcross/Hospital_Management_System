@@ -1,0 +1,33 @@
+﻿@model HospitalApp.Core.Application.ViewModels.LabTest.SelectLabTestsViewModel
+
+@{
+    ViewData["Title"] = "Selección de pruebas";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Appointment" asp-action="PerformLabTests" method="post">
+                        <input type="hidden" asp-for="AppointmentId" />
+                        <input type="hidden" asp-for="PatientId" />
+                        @for (int i = 0; i < Model.AvailableLabTests.Count; i++)
+                        {
+                            <div class="form-check">
+                                <input asp-for="@Model.AvailableLabTests[i].IsSelected" class="form-check-input" />
+                                <label class="form-check-label">@Model.AvailableLabTests[i].Name</label>
+                                <input type="hidden" asp-for="@Model.AvailableLabTests[i].LabTestId" />
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-success">Realizar pruebas</button>
+                        <a asp-controller="Appointment" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

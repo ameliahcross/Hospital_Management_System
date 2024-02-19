@@ -7,7 +7,7 @@ namespace HospitalApp.Core.Application.Interfaces.Services
 {
 	public interface ILabResultService : IGenericService<LabResultViewModel, SaveLabResultViewModel>
     {
-      
+        Task CreateLabResultsAsync(List<SaveLabResultViewModel> labResultSaveViewModels);
     }
 }
 

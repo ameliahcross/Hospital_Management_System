@@ -1,0 +1,41 @@
+﻿@model HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+
+    ViewData["Title"] = editMode == false ? "Crear resultado" : "Editar resultado";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="LabResult" asp-action="@(editMode? "Edit": "Create")" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Result" class="form-label">Resultado</label>
+                            <input asp-for="Result" class="form-control" placeholder="Ingrese el resultado de la prueba">
+                            <span asp-validation-for="Result" class="text-danger"></span>
+                        </div>
+                        @*<div class="mb-3">
+                            <select asp-for="Status" class="form-select">
+                                <option value="0">Seleccione</option>
+                                @foreach (var status in Model.Status)
+                                {
+                                    <option value="@doctor.Id">@($"{doctor.FirstName} {doctor.LastName}")</option>
+                                }
+                            </select>
+                        </div>*@
+
+                        <input type="hidden" asp-for="Id">
+                        <button type="submit" class="btn btn-success">Finalizar</button>
+                        <a asp-controller="LabResult" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
