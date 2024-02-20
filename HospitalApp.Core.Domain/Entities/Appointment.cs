@@ -7,7 +7,7 @@ namespace HospitalApp.Core.Domain.Entities
 {
     public enum AppointmentStatus
     {
-        Pendiente,
+        Consulta_Pendiente,
         Pendiente_Resultados,
         Completada
     }
@@ -29,6 +29,8 @@ namespace HospitalApp.Core.Domain.Entities
 
         // navigation property
         public ICollection<LabResult> LabResults { get; set; }
+
+
     }
 }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+
 namespace HospitalApp.Core.Application.Interfaces.Repositories
 {
 	public interface IGenericRepository<Entity> where Entity : class

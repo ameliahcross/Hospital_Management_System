@@ -109,7 +109,7 @@ namespace HospitalApp.Controllers
 
         //manejo de pruebas y resultados
 
-        public async Task<IActionResult> SelectLabTests(int Id)
+        public async Task<IActionResult> SelectLabTests(int AppointmentId)
         {
             var availableLabTests = await _serviceTest.GetAvailableLabTestsAsync();
 
@@ -122,8 +122,7 @@ namespace HospitalApp.Controllers
 
             var model = new SelectLabTestsViewModel
             {
-                Id = Id,
-                //AppointmentId = AppointmentId,
+                AppointmentId = AppointmentId,
                 AvailableLabTests = labTestSelections
             };
             return View(model);
@@ -140,25 +139,40 @@ namespace HospitalApp.Controllers
                     {
                         LabTestId = lt.LabTestId,
                         Result = "Resultado pendiente",
-                        Status = LabResultStatus.Pendiente, 
+                        Status = LabResultStatus.Pendiente,
+                        AppointmentId = model.AppointmentId
                     }).ToList();
 
                 await _serviceResult.CreateLabResultsAsync(labResultsToCreate);
-                await _service.ChangeAppointmentStatusAsync(model.Id, AppointmentStatus.Pendiente_Resultados);
+                await _service.ChangeAppointmentStatusAsync(model.AppointmentId, AppointmentStatus.Pendiente_Resultados);
                 return RedirectToAction("Index");
             }
 
-            // Si el modelo no es válido, recargar la vista con el modelo para corrección
             model.AvailableLabTests = (await _serviceTest.GetAvailableLabTestsAsync())
                      .Select(lt => new LabTestSelection
                      {
-                         LabTestId = lt.Id, // Asumiendo que la clase LabTestViewModel tiene una propiedad Id.
-                         Name = lt.Name,    // Asumiendo que la clase LabTestViewModel tiene una propiedad Name.
-                         IsSelected = false // Inicializar como no seleccionado.
+                         LabTestId = lt.Id, 
+                         Name = lt.Name, 
+                         IsSelected = false 
                      }).ToList();
 
             return View("SelectLabTests", model);
         }
+
+        public async Task<IActionResult> CompleteAppointment(SaveLabResultViewModel toBeCompleted)
+        {
+            if (ModelState.IsValid)
+            {
+                await _service.ChangeAppointmentStatusAsync(toBeCompleted.AppointmentId, AppointmentStatus.Pendiente_Resultados);
+                return RedirectToAction("Index");
+            }
+            return RedirectToRoute(new { controller = "Appointment", action = "Index" });
+        }
+
+
+
+
+
 
     }
 }

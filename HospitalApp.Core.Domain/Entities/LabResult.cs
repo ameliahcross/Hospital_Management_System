@@ -10,20 +10,20 @@ namespace HospitalApp.Core.Domain.Entities
     }
 
     public class LabResult : BaseEntity
-	{
+    {
         public string Result { get; set; }
         public LabResultStatus Status { get; set; }
 
-        // relationships
+        // Relationship
         public LabTest LabTest { get; set; }
+        //public ICollection<LabResult> LabResults { get; set; }
 
-        // foreing keys
+        // ForeignKey
         public int LabTestId { get; set; }
-        public int AppointmentId { get; set; } // nuevo FK para crear resultados
+        public int AppointmentId { get; set; }
 
-        // navigation property
+        // Navigation property
         public Appointment Appointment { get; set; }
-
     }
 
 }

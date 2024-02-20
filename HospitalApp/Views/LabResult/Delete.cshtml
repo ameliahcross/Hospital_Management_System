@@ -1,4 +1,4 @@
-﻿@model HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel
+﻿@*@model HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel
 
 @{
     ViewData["Title"] = "Eliminar Resultado";
@@ -14,8 +14,8 @@
             <form class="text-right" method="post" asp-controller="LabResult" asp-action="DeletePost">
                 <button class="btn btn-outline-danger btn-sm me-2" type="submit">Eliminar</button>
                 <a class="btn btn-outline-secondary btn-sm" asp-controller="LabResult" asp-action="Index">Cancelar</a>
-                <input type="hidden" asp-for="Id">
+                <input type="hidden" asp-for-="Id">
             </form>
         </div>
     </div>
-</div>
+</div>*@

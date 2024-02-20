@@ -9,7 +9,6 @@ namespace HospitalApp.Core.Domain.Entities
 
         // relationships
         public IEnumerable<LabResult> LabResults { get; set; }
-
     }
 }
 

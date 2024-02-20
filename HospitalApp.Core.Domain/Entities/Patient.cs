@@ -16,8 +16,7 @@ namespace HospitalApp.Core.Domain.Entities
         public string Photo { get; set; }
 
         // relationships
-        public IEnumerable<Appointment> Appointments { get; set; }
-        public IEnumerable<LabResult> LabResults { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
 

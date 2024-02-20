@@ -1,8 +1,8 @@
-﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.LabResultViewModel>
+﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel>
 
 
 @{
-    ViewData["Title"] = "Resultados Pendientes";
+    ViewData["Title"] = "Resultados";
 }
 
 <div class="container mt-5">
@@ -30,29 +30,27 @@
                         <table class="table table-success table-striped mx-auto">
                             <thead>
                                 <tr>
+                                    <th>Id Cita</th>
                                     <th>Paciente</th>
-                                    <th>Cédula</th>
-                                    @*<th>Prueba</th>*@
+                                    <th>Prueba</th>
                                     <th>Estatus</th>
-                                    <th class="text-end">Acciones</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td>@item.AppointmentId</td>
                                         <td>@item.PatientName</td>
-                                        <td>@item.PatientIdentificationNumber</td>
-                                        @*<td>@item.LabTestName</td>*@
+                                        <td>@item.LabTestName</td>
                                         <td>@item.Status</td>
-                                        <td class="text-end">
-                                            <a class="me-3 text-info" asp-controller="LabResult" asp-action="Edit" asp-route-id="@item.Id">
-                                                Reportar
-                                                @*<i class="fas fa-edit text-black"></i>*@
-                                            </a>
-                                            @*<a asp-controller="LabResult" asp-action="Delete" asp-route-id="@item.Id">
-                                                <i class="fas fa-trash text-black"></i>
-                                            </a>*@
+                                        <td class="text-center">
+                                            <a class="btn btn-success btn-sm me-1" asp-controller="Appointment" asp-action="CompleteAppointment"
+                                               asp-route-AppointmentId="@item.AppointmentId">Completar cita</a>
+
+                                            <a class="btn btn-danger btn-sm me-1" asp-controller="Appointment" asp-action="Index"
+                                               asp-route-AppointmentId="@item.AppointmentId">Cerrar resultados</a>
                                         </td>
                                     </tr>
                                 }
@@ -60,10 +58,6 @@
                         </table>
                     }
                 </div>
-                @*<small class="text-success mt-2">
-                    <i class="fas fa-arrows-alt-h"></i>
-                    Desliza horizontalmente si no ves la tabla completa.
-                </small>*@
             </div>
         </div>
     </div>

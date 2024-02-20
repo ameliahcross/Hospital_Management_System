@@ -1,7 +1,7 @@
 ﻿@model HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel
 
 @{
-    bool editMode = Model.Id == 0 ? false : true;
+    bool editMode = Model.AppointmentId == 0 ? false : true;
 
     ViewData["Title"] = editMode == false ? "Crear resultado" : "Editar resultado";
 }
@@ -30,7 +30,7 @@
                             </select>
                         </div>*@
 
-                        <input type="hidden" asp-for="Id">
+                        <input type="hidden" asp-for="AppointmentId">
                         <button type="submit" class="btn btn-success">Finalizar</button>
                         <a asp-controller="LabResult" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
                     </form>

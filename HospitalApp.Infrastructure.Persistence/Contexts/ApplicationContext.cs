@@ -57,10 +57,10 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Appointment>()
-                .HasMany(a => a.LabResults)
-                .WithOne(lr => lr.Appointment)
-                .HasForeignKey(lr => lr.AppointmentId)
-                .OnDelete(DeleteBehavior.Restrict);
+                 .HasMany(a => a.LabResults)
+                 .WithOne(lr => lr.Appointment)
+                 .HasForeignKey(lr => lr.AppointmentId)
+                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<LabTest>()
                 .HasMany(lt => lt.LabResults)
@@ -71,8 +71,8 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
 
             #region property configurations
 
-                #region doctor
-                modelBuilder.Entity<Doctor>(entity =>
+            #region doctor
+            modelBuilder.Entity<Doctor>(entity =>
                 {
                     entity.Property(d => d.FirstName).IsRequired();
                     entity.Property(d => d.LastName).IsRequired();

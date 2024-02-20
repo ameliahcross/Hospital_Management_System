@@ -48,22 +48,22 @@
                                 <td>@item.Reason</td>
                                 <td>@item.Status</td>
                                 <td class="text-end">
-                                    @if (item.Status == AppointmentStatus.Pendiente)
+                                    @if (item.Status == AppointmentStatus.Consulta_Pendiente)
                                     {
-                                        <a class="btn btn-warning btn-sm me-1" asp-controller="Appointment" asp-action="SelectLabTests" asp-route-id="@item.Id">Consultar</a>
+                                        <a class="btn btn-warning btn-sm me-1" asp-controller="Appointment" asp-action="SelectLabTests" asp-route-AppointmentId="@item.AppointmentId">Consultar</a>
                                     }
                                     else if (item.Status == AppointmentStatus.Pendiente_Resultados)
                                     {
-                                        <a class="btn btn-info btn-sm me-1" asp-controller="Appointment" asp-action="ViewResults" asp-route-id="@item.Id">Ver Resultados</a>
+                                        <a class="btn btn-info btn-sm me-1" asp-controller="LabResult" asp-action="Index" asp-route-id="@item.AppointmentId">Consultar Resultados</a>
                                     }
                                     else if (item.Status == AppointmentStatus.Completada)
                                     {
-                                        <a class="btn btn-success btn-sm me-1" asp-controller="Appointment" asp-action="FinalResults" asp-route-id="@item.Id">Resultado Final</a>
+                                        <a class="btn btn-success btn-sm me-1" asp-controller="Appointment" asp-action="FinalResults" asp-route-id="@item.AppointmentId">Resultado Final</a>
                                     }
-                                    <a class="me-3" asp-controller="Appointment" asp-action="Edit" asp-route-id="@item.Id">
+                                    <a class="me-3" asp-controller="Appointment" asp-action="Edit" asp-route-id="@item.AppointmentId">
                                         <i class="fas fa-edit text-black"></i>
                                     </a>
-                                    <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@item.Id">
+                                    <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@item.AppointmentId">
                                         <i class="fas fa-trash text-black"></i>
                                     </a>
                                 </td>

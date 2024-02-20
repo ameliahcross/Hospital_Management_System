@@ -6,7 +6,7 @@ namespace HospitalApp.Core.Application.ViewModels
 {
     public class AppointmentViewModel
     {
-        public int Id { get; set; }
+        public int AppointmentId { get; set; }
 
         [DataType(DataType.Date)]
         public DateOnly Date { get; set; }

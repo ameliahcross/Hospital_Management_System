@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240219195218_thirdInitialCreate")]
-    partial class thirdInitialCreate
+    [Migration("20240220034544_InitialNewDB")]
+    partial class InitialNewDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,9 +112,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<int>("LabTestId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Result")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -127,8 +124,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.HasIndex("AppointmentId");
 
                     b.HasIndex("LabTestId");
-
-                    b.HasIndex("PatientId");
 
                     b.ToTable("LabResults", (string)null);
                 });
@@ -266,10 +261,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", null)
-                        .WithMany("LabResults")
-                        .HasForeignKey("PatientId");
-
                     b.Navigation("Appointment");
 
                     b.Navigation("LabTest");
@@ -293,9 +284,8 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Patient", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("LabResults");
                 });
+
 #pragma warning restore 612, 618
         }
     }

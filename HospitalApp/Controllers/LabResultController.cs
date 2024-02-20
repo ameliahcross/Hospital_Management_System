@@ -26,48 +26,50 @@ namespace HospitalApp.Controllers
             return View("SaveLabResult", new SaveLabResultViewModel());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(SaveLabResultViewModel newResult)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("SaveLabResult", newResult);
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> Create(SaveLabResultViewModel newResult)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("SaveLabResult", newResult);
+        //    }
 
-            await _service.Add(newResult);
-            return RedirectToRoute(new { controller = "LabResult", action = "Index" });
-        }
+        //    await _service.Add(newResult);
+        //    return RedirectToRoute(new { controller = "LabResult", action = "Index" });
+        //}
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            var resultViewModel = await _service.GetByIdSaveViewModel(id);
+        //public async Task<IActionResult> Edit(int id)
+        //{
+        //    var resultViewModel = await _service.GetByIdSaveViewModel(id);
 
-            return View("SaveLabResult", resultViewModel);
-        }
+        //    return View("SaveLabResult", resultViewModel);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(SaveLabResultViewModel updatedResultViewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("SaveLabResult", updatedResultViewModel);
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(SaveLabResultViewModel updatedResultViewModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("SaveLabResult", updatedResultViewModel);
+        //    }
 
-            await _service.Update(updatedResultViewModel);
-            return RedirectToRoute(new { controller = "LabResult", action = "Index" });
-        }
+        //    await _service.Update(updatedResultViewModel);
+        //    return RedirectToRoute(new { controller = "LabResult", action = "Index" });
+        //}
 
-        public async Task<IActionResult> Delete(int id)
-        {
-            return View(await _service.GetByIdSaveViewModel(id));
-        }
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    return View(await _service.GetByIdSaveViewModel(id));
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> DeletePost(int id)
-        {
-            await _service.Delete(id);
-            return RedirectToRoute(new { controller = "LabResult", action = "Index" });
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> DeletePost(int id)
+        //{
+        //    await _service.Delete(id);
+        //    return RedirectToRoute(new { controller = "LabResult", action = "Index" });
+        //}
+
+
 
     }
 }

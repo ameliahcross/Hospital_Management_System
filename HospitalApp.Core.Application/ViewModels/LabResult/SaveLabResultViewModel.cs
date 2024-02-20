@@ -8,14 +8,15 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 {
 	public class SaveLabResultViewModel
 	{
+        //public int Id { get; set; }
 
-        public int Id { get; set; }
-
-        [Required(ErrorMessage = "Debe ingresar el resultado")]
         public string Result { get; set; }
 
-        [Required(ErrorMessage = "Debe seleccionar un estatus")]
         public LabResultStatus Status { get; set; }
+
+        public string LabTestName { get; set; }
+        public string PatientName { get; set; }
+
 
         public int LabTestId { get; set; }
         public int AppointmentId { get; set; }

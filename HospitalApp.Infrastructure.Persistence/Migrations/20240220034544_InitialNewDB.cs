@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class thirdInitialCreate : Migration
+    public partial class InitialNewDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

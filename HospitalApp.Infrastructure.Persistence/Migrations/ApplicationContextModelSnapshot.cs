@@ -109,9 +109,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<int>("LabTestId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Result")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -124,8 +121,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.HasIndex("AppointmentId");
 
                     b.HasIndex("LabTestId");
-
-                    b.HasIndex("PatientId");
 
                     b.ToTable("LabResults", (string)null);
                 });
@@ -262,10 +257,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         .HasForeignKey("LabTestId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("HospitalApp.Core.Domain.Entities.Patient", null)
-                        .WithMany("LabResults")
-                        .HasForeignKey("PatientId");
 
                     b.Navigation("Appointment");
 
