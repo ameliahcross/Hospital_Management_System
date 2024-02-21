@@ -2,6 +2,7 @@
 using HospitalApp.Core.Application.Services;
 using HospitalApp.Core.Application.ViewModels.Doctor;
 using HospitalApp.Core.Application.ViewModels.LabResult;
+using HospitalApp.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalApp.Controllers
@@ -15,10 +16,19 @@ namespace HospitalApp.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? labResultId = null, int? appointmentId = null)
         {
-            var list = await _service.GetAllViewModel();
-            return View(list);
+            if (labResultId.HasValue)
+            {
+                var labResult = await _service.GetByIdSaveViewModel(labResultId.Value);
+                var labResults = new List<SaveLabResultViewModel> { labResult };
+                return View(labResults);
+            }
+            else
+            {
+                var labResults = await _service.GetAllViewModel();
+                return View(labResults);
+            }
         }
 
         public async Task<IActionResult> Create()

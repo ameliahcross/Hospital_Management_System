@@ -8,7 +8,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 {
 	public class SaveLabResultViewModel
 	{
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
         public string Result { get; set; }
 

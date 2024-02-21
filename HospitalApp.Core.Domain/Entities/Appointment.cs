@@ -29,8 +29,6 @@ namespace HospitalApp.Core.Domain.Entities
 
         // navigation property
         public ICollection<LabResult> LabResults { get; set; }
-
-
     }
 }
 

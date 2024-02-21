@@ -6,7 +6,6 @@ using HospitalApp.Core.Application.ViewModels.LabResult;
 using HospitalApp.Core.Application.ViewModels.LabTest;
 using HospitalApp.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using static HospitalApp.Core.Application.ViewModels.LabTest.SelectLabTestsViewModel;
 
 namespace HospitalApp.Controllers
@@ -32,6 +31,11 @@ namespace HospitalApp.Controllers
         public async Task<IActionResult> Index()
         {
             var list = await _service.GetAllViewModel();
+
+            foreach (var appointment in list)
+            {
+                appointment.LabResultId = await _serviceResult.GetLabResultIdForAppointment(appointment.AppointmentId);
+            }
             return View(list);
         }
 
@@ -159,11 +163,11 @@ namespace HospitalApp.Controllers
             return View("SelectLabTests", model);
         }
 
-        public async Task<IActionResult> CompleteAppointment(SaveLabResultViewModel toBeCompleted)
+        public async Task<IActionResult> CompleteAppointment(int appointmentId)
         {
             if (ModelState.IsValid)
             {
-                await _service.ChangeAppointmentStatusAsync(toBeCompleted.AppointmentId, AppointmentStatus.Pendiente_Resultados);
+                await _service.ChangeAppointmentStatusAsync(appointmentId, AppointmentStatus.Pendiente_Resultados);
                 return RedirectToAction("Index");
             }
             return RedirectToRoute(new { controller = "Appointment", action = "Index" });

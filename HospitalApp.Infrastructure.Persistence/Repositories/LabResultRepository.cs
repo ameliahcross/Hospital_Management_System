@@ -22,6 +22,14 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
                            .ThenInclude(a => a.Patient)
                            .ToListAsync();
         }
+
+        public async Task<List<LabResult>> GetLabResultByAppointmentIdAsync(int appointmentId)
+        {
+            return await _dbContext.LabResults
+                                   .Where(lr => lr.AppointmentId == appointmentId)
+                                   .ToListAsync();
+        }
+
     }
 }
 

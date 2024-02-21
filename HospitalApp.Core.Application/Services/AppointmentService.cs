@@ -37,6 +37,12 @@ namespace HospitalApp.Core.Application.Services
             }).ToList();
         }
 
+        public async Task<int?> GetByIdAsync(int id)
+        {
+            var appointment = await _repository.GetByIdAsyncWithRelations(id);
+            return appointment.Id;
+        }
+
         public async Task<SaveAppointmentViewModel> GetByIdSaveViewModel(int id)
         {
             var appointment = await _repository.GetByIdAsyncWithRelations(id);
@@ -90,11 +96,25 @@ namespace HospitalApp.Core.Application.Services
         public async Task ChangeAppointmentStatusAsync(int appointmentId, AppointmentStatus newStatus)
         {
             var appointment = await _repository.GetByIdAsync(appointmentId);
+
             if (appointment != null)
             {
-                appointment.Status = newStatus;
-                await _repository.UpdateAsync(appointment);
+                if (appointment.Status == AppointmentStatus.Consulta_Pendiente)
+                {
+                    appointment.Status = AppointmentStatus.Pendiente_Resultados;
+                    await _repository.UpdateAsync(appointment);
+                }
+
+                if (appointment.Status == AppointmentStatus.Pendiente_Resultados)
+                {
+                    appointment.Status = AppointmentStatus.Completada;
+                    await _repository.UpdateAsync(appointment);
+                }
+
+
             }
+
+
         }
 
         

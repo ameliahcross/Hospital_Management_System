@@ -6,10 +6,11 @@ using HospitalApp.Core.Application.ViewModels.LabResult;
 namespace HospitalApp.Core.Application.Interfaces.Services
 {
 	public interface ILabResultService
-        //: IGenericService<LabResultViewModel, SaveLabResultViewModel>
+        : IGenericService<LabResultViewModel, SaveLabResultViewModel>
     {
         Task CreateLabResultsAsync(List<SaveLabResultViewModel> labResultSaveViewModels);
-        Task<List<SaveLabResultViewModel>> GetAllViewModel();
+        Task<int?> GetLabResultIdForAppointment(int appointmentId);
+        //Task<List<SaveLabResultViewModel>> GetAllViewModel();
     }
 }
 

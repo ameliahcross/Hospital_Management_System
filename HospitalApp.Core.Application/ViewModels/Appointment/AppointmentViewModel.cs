@@ -8,6 +8,8 @@ namespace HospitalApp.Core.Application.ViewModels
     {
         public int AppointmentId { get; set; }
 
+        public int? LabResultId { get; set; }
+
         [DataType(DataType.Date)]
         public DateOnly Date { get; set; }
 
