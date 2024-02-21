@@ -10,12 +10,14 @@ namespace HospitalApp.Core.Application.Services
     {
 		private readonly ILabResultRepository _repository;
         private readonly IAppointmentRepository _repositoryAppointment;
+        private readonly ILabTestRepository _repositoryTest;
 
-        public LabResultService(ILabResultRepository repository, IAppointmentRepository appointmentRepository)
+
+        public LabResultService(ILabResultRepository repository, IAppointmentRepository appointmentRepository, ILabTestRepository repositoryTest)
 		{
 			_repository = repository;
             _repositoryAppointment = appointmentRepository;
-
+            _repositoryTest = repositoryTest;
         }
 
         public async Task<List<LabResultViewModel>> GetAllViewModel()
@@ -63,19 +65,17 @@ namespace HospitalApp.Core.Application.Services
 
             if (labResult != null)
             {
-                // Cargar la cita asociada al resultado del laboratorio
-                var appointment = await _repositoryAppointment.GetByIdAsync(labResult.AppointmentId);
+                // Obtener el LabTest asociado al LabResult
+                var labTest = await _repositoryTest.GetByIdAsync(labResult.LabTestId);
 
-                // Cargar el nombre de la prueba de laboratorio asociada
-                var labTest = await _repository.GetByIdAsync(labResult.LabTestId);
+                var appointment = await _repositoryAppointment.GetByIdAsyncWithRelations(labResult.AppointmentId);
 
                 SaveLabResultViewModel labResultViewModel = new();
                 labResultViewModel.Id = labResult.Id;
                 labResultViewModel.Status = labResult.Status;
                 labResultViewModel.AppointmentId = labResult.AppointmentId;
-                labResultViewModel.LabTestName = labTest.LabTest.Name; // Suponiendo que el nombre de la prueba se encuentra en la entidad LabTest
-                labResultViewModel.PatientName = appointment.Patient.FirstName; // Suponiendo que el nombre del paciente se encuentra en la entidad Appointment
-
+                labResultViewModel.LabTestName = labTest.Name;
+                labResultViewModel.PatientName = appointment.Patient.FirstName + " " + appointment.Patient.LastName;
 
                 return labResultViewModel;
             }
@@ -84,6 +84,10 @@ namespace HospitalApp.Core.Application.Services
                 throw new Exception($"No se encontró ningún resultado de laboratorio con el Id {id}");
             }
         }
+
+
+
+
 
         public async Task Update(SaveLabResultViewModel labResultToSave)
         {
