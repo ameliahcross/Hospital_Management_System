@@ -1,4 +1,5 @@
 ﻿using System;
+using HospitalApp.Core.Application.ViewModels.LabResult;
 using HospitalApp.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace HospitalApp.Core.Application.Interfaces.Repositories
         Task<List<LabResult>> GetAllAsyncWithInclude();
         Task<List<LabResult>> GetLabResultByAppointmentIdAsync(int appointmentId);
         Task<List<LabResult>> GetCompletedAsync();
+        Task<List<LabResult>> GetAllFilteredAsync(string cedula);
     }
 }
 

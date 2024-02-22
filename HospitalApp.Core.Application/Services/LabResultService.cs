@@ -20,23 +20,6 @@ namespace HospitalApp.Core.Application.Services
             _repositoryTest = repositoryTest;
         }
 
-        public async Task<List<LabResultViewModel>> GetAllViewModel()
-        {
-            var labResultsList = await _repository.GetAllAsyncWithInclude();
-
-            var labResultViewModels = labResultsList.Select(labResult => new LabResultViewModel
-            {
-                Id = labResult.Id,
-                Cedula = labResult.Appointment.Patient.IdentificationNumber,
-                LabTestName = labResult.LabTest.Name,
-                Status = labResult.Status,
-                PatientName = labResult.Appointment.Patient.FirstName + " " + labResult.Appointment.Patient.LastName,
-                AppointmentId = labResult.AppointmentId
-            }).ToList();
-
-            return labResultViewModels;
-        }
-
         public async Task<List<SaveLabResultViewModel>> GetLabResultsByAppointmentId(int appointmentId)
         {
             var labResults = await _repository.GetLabResultByAppointmentIdAsync(appointmentId);
@@ -97,6 +80,8 @@ namespace HospitalApp.Core.Application.Services
                 {
                     ResultadoDigitado = lr.Result,
                     LabTestName = lr.LabTest?.Name,
+                    PatientName = lr.Appointment.Patient.LastName,
+                    AppointmentId = lr.AppointmentId,
                     Status = lr.Status
                 }).ToList();
 
@@ -106,10 +91,6 @@ namespace HospitalApp.Core.Application.Services
 
         public async Task Update(SaveLabResultViewModel labResultToSave)
         {
-            //LabResult labResult = new();
-            //labResult.Result = labResultToSave.Result;
-            //await _repository.UpdateAsync(labResult);
-
             var labResult = await _repository.GetByIdAsync(labResultToSave.Id);
 
             if (labResult == null)
@@ -124,7 +105,6 @@ namespace HospitalApp.Core.Application.Services
         public async Task Add(SaveLabResultViewModel labResultToCreate)
         {
             LabResult labResult = new();
-            //labResult.Id = labResultToCreate.Id;
             labResult.Status = labResultToCreate.Status;
 
             await _repository.AddAsync(labResult);
@@ -161,6 +141,46 @@ namespace HospitalApp.Core.Application.Services
                 await _repository.UpdateAsync(labResult);
             }
         }
+
+        public async Task<List<LabResultViewModel>> GetAllViewModel()
+        {
+            var labResultsList = await _repository.GetAllAsyncWithInclude();
+
+            var labResultViewModels = labResultsList.Select(labResult => new LabResultViewModel
+            {
+                Id = labResult.Id,
+                Cedula = labResult.Appointment.Patient.IdentificationNumber,
+                LabTestName = labResult.LabTest.Name,
+                Status = labResult.Status,
+                PatientName = labResult.Appointment.Patient.FirstName + " " + labResult.Appointment.Patient.LastName,
+                AppointmentId = labResult.AppointmentId
+            }).ToList();
+
+            return labResultViewModels;
+        }
+
+
+        public async Task<List<LabResultViewModel>> GetAllViewModelFiltered(string cedula)
+        {
+            var labResults = await _repository.GetAllFilteredAsync(cedula);
+
+            var labResultsViewModel = labResults
+                                     .Where(result => result.Appointment != null && result.Appointment.Patient != null) 
+                                     .Select(result => new LabResultViewModel
+                                     {
+                                         Id = result.Id,
+                                         Cedula = result.Appointment.Patient.IdentificationNumber,
+                                         LabTestName = result.LabTest.Name,
+                                         Status = result.Status,
+                                         PatientName = result.Appointment.Patient.FirstName + " " + result.Appointment.Patient.LastName,
+                                         AppointmentId = result.AppointmentId
+                                     })
+                                     .ToList();
+
+
+            return labResultsViewModel;
+        }
+
     }
 }
 

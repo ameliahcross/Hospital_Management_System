@@ -14,6 +14,7 @@ namespace HospitalApp.Core.Application.Interfaces.Services
         Task<List<SaveLabResultViewModel>> GetLabResultsByAppointmentId(int appointmentId);
         Task ChangeLabResultStatusAsync(int Id, LabResultStatus newStatus);
         Task<List<LabResultViewModel>> GetCompletedAsync(int appointmentId);
+        Task<List<LabResultViewModel>> GetAllViewModelFiltered(string cedula);
         //Task<List<SaveLabResultViewModel>> GetAllViewModel();
     }
 }

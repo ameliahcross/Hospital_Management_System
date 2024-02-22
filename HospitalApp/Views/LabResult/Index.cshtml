@@ -11,10 +11,14 @@
     <div class="row">
         <div class="col">
             <div class="row mb-3">
-                <div class="col text-end">
-                    <a asp-controller="LabResult" asp-action="Create" class="btn btn-sm btn-success">
-                        Nuevo <i class="fas fa-plus"></i>
-                    </a>
+                <div class="col-md-4 offset-md-8">
+                    <form asp-controller="LabResult" asp-action="Index" method="get" class="text-right">
+                        <input type="hidden" name="appointmentId" value="@ViewBag.theAppointment" />
+                        <div class="input-group">
+                            <input type="text" name="cedula" class="form-control" placeholder="Cédula">
+                            <button type="submit" class="btn btn-warning">Buscar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div>
@@ -51,7 +55,7 @@
                                             <td>@item.LabTestName</td>
                                             <td>@item.Status</td>
                                             <td class="text-center">
-                                                <a class="btn btn-info btn-sm me-1" asp-controller="LabResult"asp-action="Report"
+                                                <a class="btn btn-info btn-sm me-1" asp-controller="LabResult" asp-action="Report"
                                                    asp-route-id="@item.Id" asp-route-appointmentId="@item.AppointmentId">
                                                     Reportar resultados
                                                 </a>

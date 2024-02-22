@@ -35,8 +35,33 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
 
         public async Task<List<LabResult>> GetCompletedAsync()
         {
-            return await _dbContext.LabResults.Where(lr => lr.Status == LabResultStatus.Completado).ToListAsync();
+            return await _dbContext.LabResults.Where(lr => lr.Status == LabResultStatus.Completado)
+                .Include(lr => lr.Appointment)
+                .ToListAsync();
         }
+
+        public async Task<List<LabResult>> GetAllFilteredAsync(string cedula)
+        {
+            IQueryable<LabResult> query = _dbContext.LabResults
+                .Include(lr => lr.Appointment)
+                    .ThenInclude(a => a.Patient)
+                .Include(lr => lr.LabTest);
+
+            if (!string.IsNullOrEmpty(cedula))
+            {
+                query = query.Where(lr => lr.Appointment.Patient.IdentificationNumber == cedula);
+            }
+
+            var labResults = await query.ToListAsync();
+            labResults = labResults
+                .Where(lr => lr.Appointment != null && lr.Appointment.Patient != null)
+                .ToList();
+
+            return labResults;
+        }
+
+
+
     }
 }
 

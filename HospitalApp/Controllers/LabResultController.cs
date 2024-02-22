@@ -14,10 +14,18 @@ namespace HospitalApp.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? cedula, int? appointmentId)
         {
-            var list = await _service.GetAllViewModel();
-            return View(list);
+            if (cedula == null)
+            {
+                var list = await _service.GetAllViewModel();
+                return View(list);
+            } else
+            {
+                var filtered = await _service.GetAllViewModelFiltered(cedula);
+                ViewBag.theAppointment = appointmentId;
+                return View(filtered);
+            }
         }
 
         public async Task<IActionResult> Consult(int? labResultId = null, int? appointmentId = null)
@@ -103,6 +111,8 @@ namespace HospitalApp.Controllers
             {
                 ResultadoDigitado = result.ResultadoDigitado,
                 LabTestName = result.LabTestName,
+                PatientName = result.PatientName,
+                AppointmentId = result.AppointmentId,
                 Status = result.Status
             }).ToList();
 
