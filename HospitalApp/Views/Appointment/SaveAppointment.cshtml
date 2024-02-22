@@ -46,11 +46,8 @@
                         </div>
                         <div class="mb-3">
                             <label asp-for="Date" class="form-label">Fecha de la cita</label>
-                            <input asp-for="Date"
-                                   type="date"
-                                   class="form-control"
-                                   min="@(Model.Id == 0 ? DateTime.Today.ToString("yyyy-MM-dd") : null)"
-                                   value="@(Model.Id != 0 ? Model.Date.ToString("yyyy-MM-dd") : "")">
+                            <input asp-for="Date" type="date" class="form-control" min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                                   value="@Model.Date.ToDateTime(new TimeOnly()).ToString("yyyy-MM-dd")">
                             <span asp-validation-for="Date" class="text-danger"></span>
                         </div>
                         <div class="mb-3">

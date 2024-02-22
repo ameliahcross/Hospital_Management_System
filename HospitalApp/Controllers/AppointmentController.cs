@@ -113,55 +113,7 @@ namespace HospitalApp.Controllers
 
         //manejo de pruebas y resultados
 
-        public async Task<IActionResult> SelectLabTests(int AppointmentId)
-        {
-            var availableLabTests = await _serviceTest.GetAvailableLabTestsAsync();
-
-            var labTestSelections = availableLabTests.Select(labTest => new LabTestSelection
-            {
-                LabTestId = labTest.Id,
-                Name = labTest.Name,
-                IsSelected = false
-            }).ToList();
-
-            var model = new SelectLabTestsViewModel
-            {
-                AppointmentId = AppointmentId,
-                AvailableLabTests = labTestSelections
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> PerformLabTests(SelectLabTestsViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var labResultsToCreate = model.AvailableLabTests
-                    .Where(lt => lt.IsSelected)
-                    .Select(lt => new SaveLabResultViewModel
-                    {
-                        LabTestId = lt.LabTestId,
-                        Result = "Resultado pendiente",
-                        Status = LabResultStatus.Pendiente,
-                        AppointmentId = model.AppointmentId
-                    }).ToList();
-
-                await _serviceResult.CreateLabResultsAsync(labResultsToCreate);
-                await _service.ChangeAppointmentStatusAsync(model.AppointmentId, AppointmentStatus.Pendiente_Resultados);
-                return RedirectToAction("Index");
-            }
-
-            model.AvailableLabTests = (await _serviceTest.GetAvailableLabTestsAsync())
-                     .Select(lt => new LabTestSelection
-                     {
-                         LabTestId = lt.Id, 
-                         Name = lt.Name, 
-                         IsSelected = false 
-                     }).ToList();
-
-            return View("SelectLabTests", model);
-        }
+        
 
         public async Task<IActionResult> CompleteAppointment(int appointmentId)
         {

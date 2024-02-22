@@ -50,7 +50,7 @@
                                 <td class="text-end">
                                     @if (item.Status == AppointmentStatus.Consulta_Pendiente)
                                     {
-                                        <a class="btn btn-warning btn-sm me-1" asp-controller="Appointment" asp-action="SelectLabTests" asp-route-id="@item.">Consultar</a>
+                                        <a class="btn btn-warning btn-sm me-1" asp-controller="LabTest" asp-action="SelectLabTests" asp-route-AppointmentId="@item.AppointmentId">Consultar</a>
                                     }
                                     else if (item.Status == AppointmentStatus.Pendiente_Resultados)
                                     {

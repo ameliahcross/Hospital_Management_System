@@ -12,7 +12,7 @@
                     <h3 class="text-center">@ViewData["Title"]</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-controller="Appointment" asp-action="PerformLabTests" method="post">
+                    <form asp-controller="LabTest" asp-action="PerformLabTests" method="post">
                         <input type="hidden" asp-for="AppointmentId" value="@Model.AppointmentId"/>
                         <p>@Model.AppointmentId</p>
 

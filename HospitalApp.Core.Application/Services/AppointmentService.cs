@@ -99,25 +99,15 @@ namespace HospitalApp.Core.Application.Services
 
             if (appointment != null)
             {
-                if (appointment.Status == AppointmentStatus.Consulta_Pendiente)
-                {
-                    appointment.Status = AppointmentStatus.Pendiente_Resultados;
-                    await _repository.UpdateAsync(appointment);
-                }
-
-                if (appointment.Status == AppointmentStatus.Pendiente_Resultados)
-                {
-                    appointment.Status = AppointmentStatus.Completada;
-                    await _repository.UpdateAsync(appointment);
-                }
-
-
+                appointment.Status = newStatus;
+                await _repository.UpdateAsync(appointment);
             }
 
 
-        }
 
-        
+
+
+        }
 
     }
 }

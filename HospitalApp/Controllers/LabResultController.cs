@@ -1,8 +1,5 @@
 ﻿using HospitalApp.Core.Application.Interfaces.Services;
-using HospitalApp.Core.Application.Services;
-using HospitalApp.Core.Application.ViewModels.Doctor;
 using HospitalApp.Core.Application.ViewModels.LabResult;
-using HospitalApp.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalApp.Controllers
@@ -18,18 +15,32 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Index(int? labResultId = null, int? appointmentId = null)
         {
-            if (labResultId.HasValue)
+            if (appointmentId.HasValue)
+            {
+                var labResults = await _service.GetLabResultsByAppointmentId(appointmentId.Value);
+                return View(labResults);
+            }
+            else if (labResultId.HasValue)
             {
                 var labResult = await _service.GetByIdSaveViewModel(labResultId.Value);
-                var labResults = new List<SaveLabResultViewModel> { labResult };
-                return View(labResults);
+                return View(new List<SaveLabResultViewModel> { labResult });
             }
             else
             {
                 var labResults = await _service.GetAllViewModel();
-                return View(labResults);
+
+                var labResultsViewModel = labResults.Select(result => new SaveLabResultViewModel
+                {
+                    AppointmentId = result.AppointmentId,
+                    PatientName = result.PatientName,
+                    LabTestName = result.LabTestName,
+                    Status = result.Status,
+                }).ToList();
+
+                return View(labResultsViewModel);
             }
         }
+
 
         public async Task<IActionResult> Create()
         {

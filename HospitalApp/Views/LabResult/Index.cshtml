@@ -37,44 +37,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Count == 1)
+                                @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Model[0].AppointmentId</td>
-                                        <td>@Model[0].PatientName</td>
-                                        <td>@Model[0].LabTestName</td>
-                                        <td>@Model[0].Status</td>
+                                        <td>@item.AppointmentId</td>
+                                        <td>@item.PatientName</td>
+                                        <td>@item.LabTestName</td>
+                                        <td>@item.Status</td>
                                         <td class="text-center">
                                             <a class="btn btn-success btn-sm me-1"
-                                               href="@Url.Action("CompleteAppointment", "Appointment",new { appointmentId = Model[0].AppointmentId })">
+                                               href="@Url.Action("CompleteAppointment", "Appointment", new { appointmentId = item.AppointmentId })">
                                                 Completar cita
                                             </a>
-
                                             <a class="btn btn-danger btn-sm me-1" asp-controller="Appointment" asp-action="Index"
-                                               asp-route-AppointmentId="@Model[0].AppointmentId">Cerrar resultados</a>
+                                               asp-route-AppointmentId="@item.AppointmentId">Cerrar resultados</a>
                                         </td>
                                     </tr>
-                                }
-                                else
-                                {
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.AppointmentId</td>
-                                            <td>@item.PatientName</td>
-                                            <td>@item.LabTestName</td>
-                                            <td>@item.Status</td>
-                                            <td class="text-center">
-                                                <a class="btn btn-success btn-sm me-1"
-                                                   href="@Url.Action("CompleteAppointment", "Appointment",new { appointmentId = item.AppointmentId })">
-                                                    Completar cita
-                                                </a>
-
-                                                <a class="btn btn-danger btn-sm me-1" asp-controller="Appointment" asp-action="Index"
-                                                   asp-route-AppointmentId="@item.AppointmentId">Cerrar resultados</a>
-                                            </td>
-                                        </tr>
-                                    }
                                 }
                             </tbody>
                         </table>

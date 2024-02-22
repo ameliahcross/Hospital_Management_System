@@ -16,7 +16,6 @@ namespace HospitalApp.Core.Domain.Entities
 
         // Relationship
         public LabTest LabTest { get; set; }
-        //public ICollection<LabResult> LabResults { get; set; }
 
         // ForeignKey
         public int LabTestId { get; set; }

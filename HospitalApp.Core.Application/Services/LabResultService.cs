@@ -41,10 +41,11 @@ namespace HospitalApp.Core.Application.Services
 
             var labResultViewModels = labResults.Select(result => new SaveLabResultViewModel
             {
-                Id = result.Id,
-                Status = result.Status,
+                AppointmentId = result.AppointmentId,
+                PatientName = result.Appointment.Patient.FirstName + " " + result.Appointment.Patient.LastName,
+                LabTestName = result.LabTest.Name,
+                Status = result.Status
             }).ToList();
-
             return labResultViewModels;
         }
 
@@ -65,7 +66,6 @@ namespace HospitalApp.Core.Application.Services
 
             if (labResult != null)
             {
-                // Obtener el LabTest asociado al LabResult
                 var labTest = await _repositoryTest.GetByIdAsync(labResult.LabTestId);
 
                 var appointment = await _repositoryAppointment.GetByIdAsyncWithRelations(labResult.AppointmentId);
@@ -84,10 +84,6 @@ namespace HospitalApp.Core.Application.Services
                 throw new Exception($"No se encontró ningún resultado de laboratorio con el Id {id}");
             }
         }
-
-
-
-
 
         public async Task Update(SaveLabResultViewModel labResultToSave)
         {
