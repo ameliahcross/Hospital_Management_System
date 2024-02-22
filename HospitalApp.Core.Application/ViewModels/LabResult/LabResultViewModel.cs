@@ -10,6 +10,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
         public int Id { get; set; }
         public string PatientName { get; set; }
         public string Cedula { get; set; }
+        public string ResultadoDigitado { get; set; }
         public string PatientIdentificationNumber { get; set; }
         public string LabTestName { get; set; }
         public LabResultStatus Status { get; set; }
@@ -17,11 +18,13 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 
         public IEnumerable<PatientViewModel> Patients { get; set; }
         public IEnumerable<LabTestViewModel> LabTests { get; set; }
+        public List<int> LabResultIds { get; set; }
 
         public LabResultViewModel()
 		{
             Patients = new List<PatientViewModel>();
             LabTests = new List<LabTestViewModel>();
+            LabResultIds = new List<int>();
         }
 	}
 }

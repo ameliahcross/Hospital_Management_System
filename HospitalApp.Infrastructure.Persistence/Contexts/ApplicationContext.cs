@@ -60,7 +60,7 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                  .HasMany(a => a.LabResults)
                  .WithOne(lr => lr.Appointment)
                  .HasForeignKey(lr => lr.AppointmentId)
-                 .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<LabTest>()
                 .HasMany(lt => lt.LabResults)

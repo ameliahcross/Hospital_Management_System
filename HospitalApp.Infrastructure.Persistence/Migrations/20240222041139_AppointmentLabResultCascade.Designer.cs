@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240220034544_InitialNewDB")]
-    partial class InitialNewDB
+    [Migration("20240222041139_AppointmentLabResultCascade")]
+    partial class AppointmentLabResultCascade
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -252,7 +252,7 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.HasOne("HospitalApp.Core.Domain.Entities.Appointment", "Appointment")
                         .WithMany("LabResults")
                         .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalApp.Core.Domain.Entities.LabTest", "LabTest")
@@ -285,7 +285,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                 {
                     b.Navigation("Appointments");
                 });
-
 #pragma warning restore 612, 618
         }
     }

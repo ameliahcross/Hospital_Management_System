@@ -60,7 +60,11 @@
                                     }
                                     else if (item.Status == AppointmentStatus.Completada)
                                     {
-                                        <a class="btn btn-success btn-sm me-1" asp-controller="LabResult" asp-action="FinalResults" asp-route-AppointmentId="@item.AppointmentId">Ver resultados</a>
+                                        <a class="btn btn-success btn-sm me-1" asp-controller="LabResult" asp-action="FinalResults"
+                                           asp-route-AppointmentId="@item.AppointmentId"  asp-route-LabResultIds="@string.Join(",", item.LabResultIds ?? new List<int>())">
+                                            Ver resultados
+                                        </a>
+
                                     }
                                     <a class="me-3" asp-controller="Appointment" asp-action="Edit" asp-route-id="@item.AppointmentId">
                                         <i class="fas fa-edit text-black"></i>

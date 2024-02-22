@@ -1,9 +1,6 @@
 ﻿using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Application.Interfaces.Services;
-using HospitalApp.Core.Application.Services;
 using HospitalApp.Core.Application.ViewModels.Appointment;
-using HospitalApp.Core.Application.ViewModels.LabResult;
-using HospitalApp.Core.Application.ViewModels.LabTest;
 using HospitalApp.Core.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using static HospitalApp.Core.Application.ViewModels.LabTest.SelectLabTestsViewModel;
@@ -112,8 +109,6 @@ namespace HospitalApp.Controllers
         }
 
         //manejo de pruebas y resultados
-
-        
 
         public async Task<IActionResult> CompleteAppointment(int appointmentId)
         {

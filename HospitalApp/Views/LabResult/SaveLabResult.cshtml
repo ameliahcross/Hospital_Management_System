@@ -20,7 +20,11 @@
                             <span asp-validation-for="Result" class="text-danger"></span>
                         </div>
                         <input type="hidden" asp-for="Id">
-                        <input type="hidden" name="appointmentId" value="@Model.AppointmentId">
+                        <input type="hidden" asp-for="AppointmentId">
+                        <input type="hidden" asp-for="LabTestName">
+                        <input type="hidden" asp-for="LabTests">
+                        <input type="hidden" asp-for="PatientName">
+                        <input type="hidden" asp-for="Patients">
                         <button type="submit" class="btn btn-success">Finalizar</button>
                         <a asp-controller="LabResult" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
                     </form>

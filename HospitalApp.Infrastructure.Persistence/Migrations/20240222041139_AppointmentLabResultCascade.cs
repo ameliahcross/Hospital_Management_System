@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialNewDB : Migration
+    public partial class AppointmentLabResultCascade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -130,7 +130,7 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                         column: x => x.AppointmentId,
                         principalTable: "Appointments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_LabResults_LabTests_LabTestId",
                         column: x => x.LabTestId,

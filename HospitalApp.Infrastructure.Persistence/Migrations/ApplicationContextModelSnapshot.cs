@@ -249,7 +249,7 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.HasOne("HospitalApp.Core.Domain.Entities.Appointment", "Appointment")
                         .WithMany("LabResults")
                         .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalApp.Core.Domain.Entities.LabTest", "LabTest")
@@ -281,8 +281,6 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Patient", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("LabResults");
                 });
 #pragma warning restore 612, 618
         }

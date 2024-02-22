@@ -87,11 +87,37 @@ namespace HospitalApp.Core.Application.Services
             }
         }
 
+        public async Task<List<LabResultViewModel>> GetCompletedAsync(int appointmentId)
+        {
+            var labResults = await _repository.GetCompletedAsync();
+
+            var labResultsViewModel = labResults
+                .Where(lr => lr.AppointmentId == appointmentId)
+                .Select(lr => new LabResultViewModel
+                {
+                    ResultadoDigitado = lr.Result,
+                    LabTestName = lr.LabTest?.Name,
+                    Status = lr.Status
+                }).ToList();
+
+            return labResultsViewModel;
+        }
+
+
         public async Task Update(SaveLabResultViewModel labResultToSave)
         {
-            LabResult labResult = new();
-            //labResult.Id = labResultToSave.Id;
-            labResult.Status = labResultToSave.Status;
+            //LabResult labResult = new();
+            //labResult.Result = labResultToSave.Result;
+            //await _repository.UpdateAsync(labResult);
+
+            var labResult = await _repository.GetByIdAsync(labResultToSave.Id);
+
+            if (labResult == null)
+            {
+                throw new Exception($"No se pudo encontrar el resultado del laboratorio con el ID: {labResultToSave.Id}.");
+            }
+
+            labResult.Result = labResultToSave.Result;
             await _repository.UpdateAsync(labResult);
         }
 

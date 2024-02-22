@@ -83,9 +83,33 @@ namespace HospitalApp.Controllers
                 return View("SaveLabResult", updatedResultViewModel);
             }
 
+            await _service.Update(updatedResultViewModel);
             await _service.ChangeLabResultStatusAsync(updatedResultViewModel.Id, LabResultStatus.Completado);
-            return RedirectToAction("Index");
+
+            var all = await _service.GetAllViewModel();
+
+            return View("Index", all);
         }
+
+
+        public async Task<IActionResult> FinalResults(int appointmentId, string labResultIds)
+        {
+            var labResultIdsList = !string.IsNullOrEmpty(labResultIds) ? labResultIds.Split(',').Select(int.Parse).ToList() : new List<int>();
+            var labResults = await _service.GetLabResultsByAppointmentId(appointmentId);
+
+            var completedResults = await _service.GetCompletedAsync(appointmentId);
+
+            var labResultsViewModel = completedResults.Select(result => new LabResultViewModel
+            {
+                ResultadoDigitado = result.ResultadoDigitado,
+                LabTestName = result.LabTestName,
+                Status = result.Status
+            }).ToList();
+
+            return View("CompletedLabResult", labResultsViewModel);
+        }
+
+
 
         //public async Task<IActionResult> Delete(int id)
         //{

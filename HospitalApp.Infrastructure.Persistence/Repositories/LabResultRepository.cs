@@ -33,6 +33,10 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
                                    .ToListAsync();
         }
 
+        public async Task<List<LabResult>> GetCompletedAsync()
+        {
+            return await _dbContext.LabResults.Where(lr => lr.Status == LabResultStatus.Completado).ToListAsync();
+        }
     }
 }
 

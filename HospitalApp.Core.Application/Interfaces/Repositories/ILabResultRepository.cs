@@ -9,6 +9,7 @@ namespace HospitalApp.Core.Application.Interfaces.Repositories
         // Agregar las firmas de los methods nuevos que no tiene GenericRepository
         Task<List<LabResult>> GetAllAsyncWithInclude();
         Task<List<LabResult>> GetLabResultByAppointmentIdAsync(int appointmentId);
+        Task<List<LabResult>> GetCompletedAsync();
     }
 }
 

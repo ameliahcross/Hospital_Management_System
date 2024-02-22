@@ -10,6 +10,7 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 	{
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Debe colocar un resultado")]
         public string Result { get; set; }
 
         public LabResultStatus Status { get; set; }

@@ -1,0 +1,57 @@
+﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.LabResultViewModel>
+@using HospitalApp.Core.Domain.Entities
+
+@{
+    ViewData["Title"] = "Resultados Completados";
+}
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Resultados Completados</h3>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="row mb-3">
+            </div>
+            <div>
+                <div class="table-responsive">
+                    @if (Model == null || !Model.Any())
+                    {
+                        <div class="alert alert-danger text-center" role="alert">
+                            No se encontraron resultados 
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-success table-striped mx-auto">
+                            <thead>
+                                <tr>
+                                    <th>Prueba</th>
+                                    <th>Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.Status == LabResultStatus.Completado)
+                                    {
+                                        <tr>
+                                            <td>@item.LabTestName</td>
+                                            <td>@item.ResultadoDigitado</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger text-center" role="alert">
+                                            No se encontraron resultados completados
+                                        </div>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

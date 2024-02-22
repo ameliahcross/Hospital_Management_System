@@ -22,6 +22,8 @@ namespace HospitalApp.Core.Application.ViewModels
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
 
+        public List<int> LabResultIds { get; set; }
+
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
 

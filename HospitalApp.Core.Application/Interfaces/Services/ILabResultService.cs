@@ -13,6 +13,7 @@ namespace HospitalApp.Core.Application.Interfaces.Services
         Task<int?> GetLabResultIdForAppointment(int appointmentId);
         Task<List<SaveLabResultViewModel>> GetLabResultsByAppointmentId(int appointmentId);
         Task ChangeLabResultStatusAsync(int Id, LabResultStatus newStatus);
+        Task<List<LabResultViewModel>> GetCompletedAsync(int appointmentId);
         //Task<List<SaveLabResultViewModel>> GetAllViewModel();
     }
 }

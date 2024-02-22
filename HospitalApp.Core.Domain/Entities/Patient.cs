@@ -3,8 +3,8 @@ using HospitalApp.Core.Domain.Common;
 
 namespace HospitalApp.Core.Domain.Entities
 {
-	public class Patient : BaseEntity
-	{
+    public class Patient : BaseEntity
+    {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
