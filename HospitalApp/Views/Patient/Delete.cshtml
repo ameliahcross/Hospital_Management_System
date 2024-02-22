@@ -10,9 +10,6 @@
             <h6 class="mb-4 mt-4">
                 ¿Está seguro(a) que desea eliminar al paciente con la cédula "@Model.IdentificationNumber"?
             </h6>
-            @*<div class="alert alert-warning" role="alert">
-                Se eliminarán todas las  que pertenecen a <span class="text-danger">@Model.Name</span>
-            </div>*@
             <hr />
             <form class="text-right" method="post" asp-controller="Patient" asp-action="DeletePost">
                 <button class="btn btn-outline-danger btn-sm me-2" type="submit">Eliminar</button>

@@ -57,7 +57,6 @@ namespace HospitalApp.Core.Application.Services
             await _repository.DeleteAsync(labTest);
         }
 
-        // adicional
         public async Task<List<LabTestViewModel>> GetAvailableLabTestsAsync()
         {
             var labTests = await _repository.GetAllAsync();

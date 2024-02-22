@@ -108,8 +108,6 @@ namespace HospitalApp.Controllers
             return RedirectToRoute(new { controller = "Appointment", action = "Index" });
         }
 
-        //manejo de pruebas y resultados
-
         public async Task<IActionResult> CompleteAppointment(int appointmentId)
         {
             if (ModelState.IsValid)
@@ -119,10 +117,6 @@ namespace HospitalApp.Controllers
             }
             return RedirectToRoute(new { controller = "Appointment", action = "Index" });
         }
-
-
-
-
 
 
     }

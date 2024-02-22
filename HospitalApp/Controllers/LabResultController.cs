@@ -34,7 +34,6 @@ namespace HospitalApp.Controllers
             {
                 var labResults = await _service.GetLabResultsByAppointmentId(appointmentId.Value);
                 return View("AppointmentLabResult", labResults);
-                //return View(labResults);
             }
             else if (labResultId.HasValue)
             {
@@ -55,7 +54,6 @@ namespace HospitalApp.Controllers
                 }).ToList();
 
                 return View("AppointmentLabResult", labResultsViewModel);
-                //return View(labResultsViewModel);
             }
         }
 
@@ -64,18 +62,6 @@ namespace HospitalApp.Controllers
         {
             return View("SaveLabResult", new SaveLabResultViewModel());
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Create(SaveLabResultViewModel newResult)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View("SaveLabResult", newResult);
-        //    }
-
-        //    await _service.Add(newResult);
-        //    return RedirectToRoute(new { controller = "LabResult", action = "Index" });
-        //}
 
         public async Task<IActionResult> Report(int id, int appointmentId)
         {
@@ -118,22 +104,6 @@ namespace HospitalApp.Controllers
 
             return View("CompletedLabResult", labResultsViewModel);
         }
-
-
-
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    return View(await _service.GetByIdSaveViewModel(id));
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> DeletePost(int id)
-        //{
-        //    await _service.Delete(id);
-        //    return RedirectToRoute(new { controller = "LabResult", action = "Index" });
-        //}
-
-
 
     }
 }

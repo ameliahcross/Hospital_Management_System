@@ -75,8 +75,6 @@ namespace HospitalApp.Controllers
             return RedirectToRoute(new { controller = "LabTest", action = "Index" });
         }
 
-        // manejo de pruebas y resultados
-
         public async Task<IActionResult> SelectLabTests(int AppointmentId)
         {
             var availableLabTests = await _service.GetAvailableLabTestsAsync();

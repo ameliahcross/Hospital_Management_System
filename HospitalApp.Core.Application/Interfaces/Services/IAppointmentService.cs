@@ -1,8 +1,6 @@
 ﻿using System;
 using HospitalApp.Core.Application.ViewModels;
 using HospitalApp.Core.Application.ViewModels.Appointment;
-using HospitalApp.Core.Application.ViewModels.LabResult;
-using HospitalApp.Core.Application.ViewModels.LabTest;
 using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.Interfaces.Services
@@ -11,7 +9,6 @@ namespace HospitalApp.Core.Application.Interfaces.Services
 	{
         Task ChangeAppointmentStatusAsync(int appointmentId, AppointmentStatus newStatus);
         Task<int?> GetByIdAsync(int id);
-        //Task<List<LabTestViewModel>> GetAvailableLabTestsAsync();
     }
 }
 

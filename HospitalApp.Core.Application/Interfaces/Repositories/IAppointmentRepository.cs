@@ -8,7 +8,6 @@ namespace HospitalApp.Core.Application.Interfaces.Repositories
 	{
         Task<List<Appointment>> GetAllAsyncWithRelations();
         Task<Appointment> GetByIdAsyncWithRelations(int id);
-
         Task ChangeAppointmentStatusAsync(int appointmentId, AppointmentStatus newStatus);
         Task<List<LabTest>> GetAvailableLabTestsAsync();
         Task CreateLabResultsAsync(List<LabResult> labResults);

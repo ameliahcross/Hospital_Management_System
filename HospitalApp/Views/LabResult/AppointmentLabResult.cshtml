@@ -9,13 +9,6 @@
     <hr />
     <div class="row">
         <div class="col">
-            <div class="row mb-3">
-                <div class="col text-end">
-                    <a asp-controller="LabResult" asp-action="Create" class="btn btn-sm btn-success">
-                        Nuevo <i class="fas fa-plus"></i>
-                    </a>
-                </div>
-            </div>
             <div>
                 <div class="table-responsive">
                     @if (Model == null || !Model.Any())

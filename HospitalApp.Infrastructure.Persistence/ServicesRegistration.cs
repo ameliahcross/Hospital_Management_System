@@ -34,7 +34,6 @@ namespace HospitalApp.Infrastructure.Persistence
             services.AddTransient<ILabTestRepository, LabTestRepository>();
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            // registrando la clase GenericRepository<Entity> como implementación para la interfaz genérica IGenericRepository<Entity>
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             #endregion
         }
