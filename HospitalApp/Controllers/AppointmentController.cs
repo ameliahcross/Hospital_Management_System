@@ -119,7 +119,7 @@ namespace HospitalApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.ChangeAppointmentStatusAsync(appointmentId, AppointmentStatus.Pendiente_Resultados);
+                await _service.ChangeAppointmentStatusAsync(appointmentId, AppointmentStatus.Completada);
                 return RedirectToAction("Index");
             }
             return RedirectToRoute(new { controller = "Appointment", action = "Index" });

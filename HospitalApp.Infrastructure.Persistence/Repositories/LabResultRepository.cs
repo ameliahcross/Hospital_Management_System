@@ -19,7 +19,7 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.LabResults.Include(lr => lr.LabTest)
                            .Include(lr => lr.Appointment)
-                           .ThenInclude(a => a.Patient)
+                                .ThenInclude(a => a.Patient)
                            .ToListAsync();
         }
 

@@ -1,8 +1,7 @@
-﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.LabResultViewModel>
-@using HospitalApp.Core.Domain.Entities
+﻿@model List<HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel>
 
 @{
-    ViewData["Title"] = "Todos los Resultados";
+    ViewData["Title"] = "Resultados por cita";
 }
 
 <div class="container mt-5">
@@ -32,37 +31,32 @@
                                 <tr>
                                     <th>Id Cita</th>
                                     <th>Paciente</th>
-                                    <th>Cédula</th>
                                     <th>Prueba</th>
                                     <th>Estatus</th>
-                                    <th class="text-center">Acciones</th>
+                                    @*<th class="text-center">Acciones</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-
-                                    if (item.Status == LabResultStatus.Pendiente)
-                                    {
-                                        <tr>
-                                            <td>@item.AppointmentId</td>
-                                            <td>@item.PatientName</td>
-                                            <td>@item.Cedula</td>
-                                            <td>@item.LabTestName</td>
-                                            <td>@item.Status</td>
-                                            <td class="text-center">
-                                                <a class="btn btn-info btn-sm me-1" asp-controller="LabResult"asp-action="Report"
-                                                   asp-route-id="@item.Id" asp-route-appointmentId="@item.AppointmentId">
-                                                    Reportar resultados
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
-
+                                    <tr>
+                                        <td>@item.AppointmentId</td>
+                                        <td>@item.PatientName</td>
+                                        <td>@item.LabTestName</td>
+                                        <td>@item.Status</td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
                     }
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-success" asp-controller="Appointment" asp-action="CompleteAppointment" asp-route-AppointmentId="@Model.FirstOrDefault()?.AppointmentId">
+                        Completar cita
+                    </a>
+                    <a class="btn btn-danger" asp-controller="Appointment" asp-action="Index">
+                        Cerrar resultados
+                    </a>
                 </div>
             </div>
         </div>

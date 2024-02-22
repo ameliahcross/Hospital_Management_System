@@ -26,6 +26,8 @@ namespace HospitalApp.Core.Application.Services
 
             var labResultViewModels = labResultsList.Select(labResult => new LabResultViewModel
             {
+                Id = labResult.Id,
+                Cedula = labResult.Appointment.Patient.IdentificationNumber,
                 LabTestName = labResult.LabTest.Name,
                 Status = labResult.Status,
                 PatientName = labResult.Appointment.Patient.FirstName + " " + labResult.Appointment.Patient.LastName,
@@ -120,6 +122,17 @@ namespace HospitalApp.Core.Application.Services
                     AppointmentId = labResultSaveViewModel.AppointmentId
                 };
                 await _repository.AddAsync(labResult);
+            }
+        }
+
+        public async Task ChangeLabResultStatusAsync(int Id, LabResultStatus newStatus)
+        {
+            var labResult = await _repository.GetByIdAsync(Id);
+
+            if (labResult != null)
+            {
+                labResult.Status = newStatus;
+                await _repository.UpdateAsync(labResult);
             }
         }
     }

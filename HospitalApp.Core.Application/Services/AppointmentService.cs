@@ -102,11 +102,6 @@ namespace HospitalApp.Core.Application.Services
                 appointment.Status = newStatus;
                 await _repository.UpdateAsync(appointment);
             }
-
-
-
-
-
         }
 
     }

@@ -1,9 +1,8 @@
 ﻿@model HospitalApp.Core.Application.ViewModels.LabResult.SaveLabResultViewModel
 
 @{
-    bool editMode = Model.AppointmentId == 0 ? false : true;
 
-    ViewData["Title"] = editMode == false ? "Crear resultado" : "Editar resultado";
+    ViewData["Title"] = "Reportar resultado";
 }
 
 <div class="container mt-5">
@@ -14,23 +13,14 @@
                     <h3 class="text-center">@ViewData["Title"]</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-controller="LabResult" asp-action="@(editMode? "Edit": "Create")" method="post">
+                    <form asp-controller="LabResult" asp-action="Report" method="post">
                         <div class="mb-3">
                             <label asp-for="Result" class="form-label">Resultado</label>
                             <input asp-for="Result" class="form-control" placeholder="Ingrese el resultado de la prueba">
                             <span asp-validation-for="Result" class="text-danger"></span>
                         </div>
-                        @*<div class="mb-3">
-                            <select asp-for="Status" class="form-select">
-                                <option value="0">Seleccione</option>
-                                @foreach (var status in Model.Status)
-                                {
-                                    <option value="@doctor.Id">@($"{doctor.FirstName} {doctor.LastName}")</option>
-                                }
-                            </select>
-                        </div>*@
-
-                        <input type="hidden" asp-for="AppointmentId">
+                        <input type="hidden" asp-for="Id">
+                        <input type="hidden" name="appointmentId" value="@Model.AppointmentId">
                         <button type="submit" class="btn btn-success">Finalizar</button>
                         <a asp-controller="LabResult" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
                     </form>

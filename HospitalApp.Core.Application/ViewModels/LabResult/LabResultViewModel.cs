@@ -7,8 +7,9 @@ namespace HospitalApp.Core.Application.ViewModels.LabResult
 {
 	public class LabResultViewModel
 	{
-        //public int Id { get; set; }
+        public int Id { get; set; }
         public string PatientName { get; set; }
+        public string Cedula { get; set; }
         public string PatientIdentificationNumber { get; set; }
         public string LabTestName { get; set; }
         public LabResultStatus Status { get; set; }
