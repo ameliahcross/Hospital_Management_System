@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.ViewModels.User
 {
@@ -8,32 +7,28 @@ namespace HospitalApp.Core.Application.ViewModels.User
 	{
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Debe ingresar un nombre")]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "Debe ingresar un apellido")]
-        public string LastName { get; set; }
-
-        [Required(ErrorMessage = "Debe ingresar un correo")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "El correo no es válido")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage = "Debe ingresar un nombre de usuario")]
+        [Required(ErrorMessage = "Debe ingresar el nombre de usuario")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar una contraseña")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Debe confirmar la contraseña")]
-        [Compare("Password", ErrorMessage = "No coinciden las contraseñas ingresadas")]
+        [Compare(nameof(Password), ErrorMessage = "No coinciden las contraseñas ingresadas")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Debe seleccionar el tipo de usuario")]
-        public UserType UserType { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un correo")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "El correo no es válido")]
+        public string Email { get; set; }
 
-        public SaveUserViewModel()
-		{
-		}
+        [Required(ErrorMessage = "Debe ingresar un nombre")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar el apellido")]
+        public string LastName { get; set; }
+
+       
 	}
 }
 

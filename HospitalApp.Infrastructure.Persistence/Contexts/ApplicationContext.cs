@@ -14,6 +14,7 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<LabResult> LabResults { get; set; }
 
+
         // constructor
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -143,12 +144,13 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                 #region user
                 modelBuilder.Entity<User>(entity =>
                 {
-                    entity.Property(u => u.FirstName).IsRequired();
-                    entity.Property(u => u.LastName).IsRequired();
-                    entity.Property(u => u.Email).IsRequired();
-                    entity.Property(u => u.Username).IsRequired();
+                    entity.Property(u => u.Username).IsRequired()
+                            .HasMaxLength(100);
                     entity.Property(u => u.Password).IsRequired();
-                    entity.Property(u => u.UserType).IsRequired();
+                    entity.Property(u => u.Email).IsRequired();
+                    entity.Property(u => u.Name).IsRequired()
+                            .HasMaxLength(100);
+                    entity.Property(u => u.LastName).IsRequired();
                 });
                 #endregion
 

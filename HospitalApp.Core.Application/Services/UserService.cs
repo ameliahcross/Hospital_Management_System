@@ -22,12 +22,10 @@ namespace HospitalApp.Core.Application.Services
             return usersList.Select(user => new UserViewModel
             {
                 Id = user.Id,
-                FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 Username = user.Username,
                 Password = user.Password,
-                UserType = user.UserType
             }).ToList();
         }
 
@@ -36,12 +34,10 @@ namespace HospitalApp.Core.Application.Services
             var user = await _repository.GetByIdAsync(id);
             SaveUserViewModel userViewModel = new();
             userViewModel.Id = userViewModel.Id;
-            userViewModel.FirstName = user.FirstName;
             userViewModel.LastName = user.LastName;
             userViewModel.Email = user.Email;
             userViewModel.Username = user.Username;
             userViewModel.Password = user.Password;
-            userViewModel.UserType = user.UserType;
 
             return userViewModel;
         }
@@ -50,12 +46,10 @@ namespace HospitalApp.Core.Application.Services
         {
             User user = new();
             user.Id = userToSave.Id;
-            user.FirstName = userToSave.FirstName;
             user.LastName = userToSave.LastName;
             user.Email = userToSave.Email;
             user.Username = userToSave.Username;
             user.Password = userToSave.Password;
-            user.UserType = userToSave.UserType;
 
             await _repository.UpdateAsync(user);
         }
@@ -64,12 +58,10 @@ namespace HospitalApp.Core.Application.Services
         {
             User user = new();
             user.Id = userToCreate.Id;
-            user.FirstName = userToCreate.FirstName;
             user.LastName = userToCreate.LastName;
             user.Email = userToCreate.Email;
             user.Username = userToCreate.Username;
             user.Password = userToCreate.Password;
-            user.UserType = userToCreate.UserType;
 
             await _repository.AddAsync(user);
         }
