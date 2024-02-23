@@ -1,6 +1,7 @@
-﻿using HospitalApp.Core.Application.Interfaces.Services;
+﻿using HospitalApp.Core.Application.Interfaces.Services; 
 using HospitalApp.Core.Application.ViewModels.User;
 using Microsoft.AspNetCore.Mvc;
+using HospitalApp.Core.Application.Helpers;
 
 namespace HospitalApp.Controllers
 {
@@ -20,13 +21,27 @@ namespace HospitalApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Index(LoginViewModel loginVm)
         {
             if (!ModelState.IsValid)
             {
-                return View(loginViewModel);
+                return View(loginVm);
             }
-            return View();
+
+            UserViewModel userVm = await _service.Login(loginVm);
+
+ 
+            if (userVm != null)
+            {
+                HttpContext.Session.Set<UserViewModel>("user", userVm);
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
+            else
+            {
+                ModelState.AddModelError("userValidation", "Datos de inicio de sesión incorrectos");
+            }
+
+            return View(loginVm);
         }
 
         //register

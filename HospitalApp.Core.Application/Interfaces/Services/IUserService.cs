@@ -5,7 +5,7 @@ namespace HospitalApp.Core.Application.Interfaces.Services
 {
 	public interface IUserService : IGenericService<UserViewModel, SaveUserViewModel>
     {
-
+        Task<UserViewModel> Login(LoginViewModel loginVm);
     }
 }
 

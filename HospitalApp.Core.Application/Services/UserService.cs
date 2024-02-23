@@ -77,6 +77,26 @@ namespace HospitalApp.Core.Application.Services
             var user = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(user);
         }
+
+        public async Task<UserViewModel> Login(LoginViewModel loginVm)
+        {
+            User user = await _repository.LoginAsync(loginVm);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            UserViewModel userVm = new();
+            userVm.Id = user.Id;
+            userVm.Name = user.Name;
+            userVm.Email = user.Email;
+            userVm.Username = user.Username;
+            userVm.Password = user.Password;
+
+            return userVm;
+        }
+
     }
 }
 
