@@ -151,6 +151,7 @@ namespace HospitalApp.Infrastructure.Persistence.Contexts
                     entity.Property(u => u.Name).IsRequired()
                             .HasMaxLength(100);
                     entity.Property(u => u.LastName).IsRequired();
+                    entity.Property(u => u.Role).IsRequired();
                 });
                 #endregion
 
