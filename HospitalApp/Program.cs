@@ -1,6 +1,6 @@
 ﻿using HospitalApp.Infrastructure.Persistence;
 using HospitalApp.Core.Application;
-
+using HospitalApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +10,7 @@ builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddTransient<ValidateUserSession, ValidateUserSession>();  
 
 
 var app = builder.Build();

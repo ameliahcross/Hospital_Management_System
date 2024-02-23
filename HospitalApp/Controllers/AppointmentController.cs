@@ -2,8 +2,8 @@
 using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels.Appointment;
 using HospitalApp.Core.Domain.Entities;
+using HospitalApp.Middlewares;
 using Microsoft.AspNetCore.Mvc;
-using static HospitalApp.Core.Application.ViewModels.LabTest.SelectLabTestsViewModel;
 
 namespace HospitalApp.Controllers
 {
@@ -12,21 +12,25 @@ namespace HospitalApp.Controllers
         private readonly IAppointmentService _service;
         private readonly IPatientSevice _servicePatient;
         private readonly IDoctorService _serviceDr;
-        private readonly ILabTestService _serviceTest;
         private readonly ILabResultService _serviceResult;
+        private readonly ValidateUserSession _validateUserSession;
 
-        public AppointmentController
-        (IAppointmentService service, IPatientSevice servicePatient, IDoctorService serviceDr, ILabTestService serviceTest, ILabResultService serviceResult)
+        public AppointmentController(IAppointmentService service, IPatientSevice servicePatient, IDoctorService serviceDr, ValidateUserSession validateUserSession, ILabResultService serviceResult)
         {
             _service = service;
             _servicePatient = servicePatient;
             _serviceDr = serviceDr;
-            _serviceTest = serviceTest;
             _serviceResult = serviceResult;
+            _validateUserSession = validateUserSession;
         }
 
         public async Task<IActionResult> Index()
         {
+            if (! _validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var list = await _service.GetAllViewModel();
 
             foreach (var appointment in list)
@@ -38,6 +42,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Create()
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var patients = await _servicePatient.GetAllViewModel();
             var doctors = await _serviceDr.GetAllViewModel();
             var AppointmentViewModel = new SaveAppointmentViewModel
@@ -51,6 +60,11 @@ namespace HospitalApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(SaveAppointmentViewModel newAppointment)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (!ModelState.IsValid)
             {
                 newAppointment.Patients = await _servicePatient.GetAllViewModel();
@@ -64,6 +78,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var appointmentViewModel = await _service.GetByIdSaveViewModel(id);
             appointmentViewModel.Patients = await _servicePatient.GetAllViewModel();
             appointmentViewModel.Doctors = await _serviceDr.GetAllViewModel();
@@ -73,6 +92,11 @@ namespace HospitalApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(SaveAppointmentViewModel updatedAppointmentViewModel)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (!ModelState.IsValid)
             {
                 updatedAppointmentViewModel.Patients = await _servicePatient.GetAllViewModel();
@@ -86,6 +110,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var appointmentViewModel =  await _service.GetByIdSaveViewModel(id);
 
             var patient = await _servicePatient.GetByIdSaveViewModel(appointmentViewModel.PatientId);
@@ -104,12 +133,22 @@ namespace HospitalApp.Controllers
         [HttpPost]
         public async Task<IActionResult> DeletePost(int id)
         {
+            if (! _validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             await _service.Delete(id);
             return RedirectToRoute(new { controller = "Appointment", action = "Index" });
         }
 
         public async Task<IActionResult> CompleteAppointment(int appointmentId)
         {
+            if (! _validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (ModelState.IsValid)
             {
                 await _service.ChangeAppointmentStatusAsync(appointmentId, AppointmentStatus.Completada);

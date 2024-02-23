@@ -2,21 +2,29 @@
 using HospitalApp.Core.Application.ViewModels.User;
 using Microsoft.AspNetCore.Mvc;
 using HospitalApp.Core.Application.Helpers;
+using HospitalApp.Middlewares;
 
 namespace HospitalApp.Controllers
 {
     public class UserController : Controller
     {
         private readonly IUserService _service;
+        private readonly ValidateUserSession _validateUserSession;
 
-        public UserController(IUserService service)
+        public UserController(IUserService service, ValidateUserSession validateUserSession)
         {
             _service = service;
+            _validateUserSession = validateUserSession;
         }
 
         //login 
         public IActionResult Index()
-        {   
+        {
+            if (_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
+
             return View();
         }
 
@@ -29,7 +37,6 @@ namespace HospitalApp.Controllers
             }
 
             UserViewModel userVm = await _service.Login(loginVm);
-
  
             if (userVm != null)
             {
@@ -44,15 +51,32 @@ namespace HospitalApp.Controllers
             return View(loginVm);
         }
 
+        //log out
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("user");
+            return RedirectToRoute(new { controller = "User", action = "Index" });
+        }
+
         //register
         public IActionResult Register()
         {
+            if (_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
+
             return View(new SaveUserViewModel());
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(SaveUserViewModel userViewModel)
         {
+            if (_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(userViewModel);
@@ -61,6 +85,7 @@ namespace HospitalApp.Controllers
             return RedirectToRoute(new { controller = "User", action = "Index" });
         }
 
+        
 
 
     }

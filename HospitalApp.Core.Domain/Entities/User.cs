@@ -3,6 +3,12 @@ using HospitalApp.Core.Domain.Common;
 
 namespace HospitalApp.Core.Domain.Entities
 {
+    public enum UserRole
+    {
+        Admin,
+        Assistant
+    }
+
     public class User : BaseEntity
 	{
         public string Username { get; set; }
@@ -14,6 +20,8 @@ namespace HospitalApp.Core.Domain.Entities
         public string Name { get; set; }
 
         public string LastName { get; set; }
+
+        public UserRole Role { get; set; }
     }
 }
 

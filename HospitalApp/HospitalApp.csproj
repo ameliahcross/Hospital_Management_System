@@ -34,6 +34,7 @@
     <None Remove="Views\LabTest\" />
     <None Remove="Views\Patient\" />
     <None Remove="Views\User\" />
+    <None Remove="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Appointment\" />
@@ -42,5 +43,6 @@
     <Folder Include="Views\LabTest\" />
     <Folder Include="Views\Patient\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 </Project>

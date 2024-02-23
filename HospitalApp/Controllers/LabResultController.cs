@@ -1,6 +1,7 @@
 ﻿using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels.LabResult;
 using HospitalApp.Core.Domain.Entities;
+using HospitalApp.Middlewares;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalApp.Controllers
@@ -8,18 +9,26 @@ namespace HospitalApp.Controllers
     public class LabResultController : Controller
     {
         private readonly ILabResultService _service;
+        private readonly ValidateUserSession _validateUserSession;
 
-        public LabResultController(ILabResultService service)
+        public LabResultController(ILabResultService service, ValidateUserSession validateUserSession)
         {
             _service = service;
+            _validateUserSession = validateUserSession;
         }
 
         public async Task<IActionResult> Index(string? cedula, int? appointmentId)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (cedula == null)
             {
                 var list = await _service.GetAllViewModel();
                 return View(list);
+
             } else
             {
                 var filtered = await _service.GetAllViewModelFiltered(cedula);
@@ -30,6 +39,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Consult(int? labResultId = null, int? appointmentId = null)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (appointmentId.HasValue)
             {
                 var labResults = await _service.GetLabResultsByAppointmentId(appointmentId.Value);
@@ -60,11 +74,21 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Create()
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             return View("SaveLabResult", new SaveLabResultViewModel());
         }
 
         public async Task<IActionResult> Report(int id, int appointmentId)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var resultViewModel = await _service.GetByIdSaveViewModel(id);
             return View("SaveLabResult", resultViewModel);
         }
@@ -72,6 +96,11 @@ namespace HospitalApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Report(SaveLabResultViewModel updatedResultViewModel)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             if (!ModelState.IsValid)
             {
                 return View("SaveLabResult", updatedResultViewModel);
@@ -88,6 +117,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> FinalResults(int appointmentId, string labResultIds)
         {
+            if (!_validateUserSession.HasUser())
+            {
+                return RedirectToRoute(new { controller = "User", action = "Index" });
+            }
+
             var labResultIdsList = !string.IsNullOrEmpty(labResultIds) ? labResultIds.Split(',').Select(int.Parse).ToList() : new List<int>();
             var labResults = await _service.GetLabResultsByAppointmentId(appointmentId);
 
