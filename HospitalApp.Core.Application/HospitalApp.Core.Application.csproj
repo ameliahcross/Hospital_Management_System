@@ -26,6 +26,7 @@
     <None Remove="Interfaces\" />
     <None Remove="Interfaces\Repositories\" />
     <None Remove="Interfaces\Services\" />
+    <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -39,5 +40,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Interfaces\Services\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

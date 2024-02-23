@@ -10,10 +10,7 @@ namespace HospitalApp.Core.Application.ViewModels.User
 
         [Required(ErrorMessage = "Debe ingresar una contraseña")]
         public string Password { get; set; }
-
-        public LoginViewModel()
-		{
-		}
+       
 	}
 }
 

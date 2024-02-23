@@ -1,0 +1,56 @@
+﻿@using HospitalApp.Core.Application.ViewModels.User;
+@model SaveUserViewModel
+
+@{
+    ViewData["Title"] = "Crear nuevo usuario";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 bg-success bg-opacity-10 mb-5">
+                <div class="card-header bg-opacity-50 bg-success">
+                    <h3 class="text-center">Registro de Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="User" asp-action="Register" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Nombre</label>
+                            <input asp-for="Name" class="form-control">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Apellido</label>
+                            <input asp-for="LastName" class="form-control">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label">Nombre de usuario</label>
+                            <input asp-for="Username" class="form-control">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Contraseña</label>
+                            <input asp-for="Password" class="form-control">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                         <div class="mb-3">
+                             <label asp-for="ConfirmPassword" class="form-label">Confirmar contraseña</label>
+                            <input asp-for="ConfirmPassword" class="form-control">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a asp-controller="User" asp-action="Index" class="btn btn-secondary">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

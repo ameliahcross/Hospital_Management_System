@@ -22,10 +22,12 @@ namespace HospitalApp.Core.Application.Services
             return usersList.Select(user => new UserViewModel
             {
                 Id = user.Id,
-                LastName = user.LastName,
-                Email = user.Email,
                 Username = user.Username,
                 Password = user.Password,
+                Email = user.Email,
+                Name = user.Name,
+                LastName = user.LastName,
+                
             }).ToList();
         }
 
@@ -34,10 +36,11 @@ namespace HospitalApp.Core.Application.Services
             var user = await _repository.GetByIdAsync(id);
             SaveUserViewModel userViewModel = new();
             userViewModel.Id = userViewModel.Id;
-            userViewModel.LastName = user.LastName;
-            userViewModel.Email = user.Email;
             userViewModel.Username = user.Username;
             userViewModel.Password = user.Password;
+            userViewModel.Email = user.Email;
+            userViewModel.Name = user.Name;
+            userViewModel.LastName = user.LastName;
 
             return userViewModel;
         }
@@ -46,22 +49,25 @@ namespace HospitalApp.Core.Application.Services
         {
             User user = new();
             user.Id = userToSave.Id;
-            user.LastName = userToSave.LastName;
-            user.Email = userToSave.Email;
             user.Username = userToSave.Username;
             user.Password = userToSave.Password;
+            user.Email = userToSave.Email;
+            user.Name = userToSave.Name;
+            user.LastName = userToSave.LastName;
 
             await _repository.UpdateAsync(user);
         }
 
         public async Task Add(SaveUserViewModel userToCreate)
         {
-            User user = new();
-            user.Id = userToCreate.Id;
-            user.LastName = userToCreate.LastName;
-            user.Email = userToCreate.Email;
-            user.Username = userToCreate.Username;
-            user.Password = userToCreate.Password;
+            var user = new User
+            {
+                Username = userToCreate.Username,
+                Password = userToCreate.Password,
+                Email = userToCreate.Email,
+                Name = userToCreate.Name,
+                LastName = userToCreate.LastName
+            };
 
             await _repository.AddAsync(user);
         }

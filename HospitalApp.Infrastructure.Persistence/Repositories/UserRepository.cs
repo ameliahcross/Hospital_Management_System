@@ -1,8 +1,8 @@
 ﻿using System;
+using HospitalApp.Core.Application.Helpers;
 using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Infrastructure.Persistence.Contexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace HospitalApp.Infrastructure.Persistence.Repositories
 {
@@ -14,6 +14,12 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-    }
+
+        public override async Task AddAsync(User user)
+        {
+            user.Password = PasswordEncryption.ComputeSha256Hash(user.Password);
+            await base.AddAsync(user);
+        }
+    } 
 }
 

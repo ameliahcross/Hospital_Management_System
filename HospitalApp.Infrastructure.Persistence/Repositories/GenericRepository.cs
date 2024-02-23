@@ -1,7 +1,4 @@
-﻿using System;
-using System.Numerics;
-using HospitalApp.Core.Application.Interfaces.Repositories;
-using HospitalApp.Core.Domain.Entities;
+﻿using HospitalApp.Core.Application.Interfaces.Repositories;
 using HospitalApp.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +13,7 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task AddAsync(Entity entity)
+        public virtual async Task AddAsync(Entity entity)
         {
             await _dbContext.Set<Entity>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();

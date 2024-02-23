@@ -25,25 +25,28 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index">Usuarios</a>
+                        <a class="nav-link" asp-controller="Doctor" asp-action="Index">Doctores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Doctor" asp-action="Index">Médicos</a>
+                        <a class="nav-link" asp-controller="LabTest" asp-action="Index">Pruebas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="LabTest" asp-action="Index">Pruebas</a>
+                        <a class="nav-link" asp-controller="Patient" asp-action="Index">Pacientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="Index">Pacientes</a>
+                        <a class="nav-link" asp-controller="Appointment" asp-action="Index">Citas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Appointment" asp-action="Index">Citas</a>
+                        <a class="nav-link" asp-controller="LabResult" asp-action="Index">Resultados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="LabResult" asp-action="Index">Resultados</a>
+                        <a class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" asp-controller="User" asp-action="Register">Registrarme</a>
                     </li>
                 </ul>
             </div>

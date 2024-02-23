@@ -11,6 +11,7 @@ namespace HospitalApp.Core.Application.ViewModels.User
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar una contraseña")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Debe confirmar la contraseña")]
@@ -27,8 +28,6 @@ namespace HospitalApp.Core.Application.ViewModels.User
 
         [Required(ErrorMessage = "Debe ingresar el apellido")]
         public string LastName { get; set; }
-
-       
 	}
 }
 
