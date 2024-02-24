@@ -1,5 +1,6 @@
 ﻿using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels.Patient;
+using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Middlewares;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (!_validateUserSession.HasUser() || _validateUserSession.GetUserRole() != UserRole.Asistente)
+            {
+                return RedirectToRoute(new { controller = "User", action = "Permission" });
+            }
+
             if (!_validateUserSession.HasUser())
             {
                 return RedirectToRoute(new { controller = "User", action = "Index" });

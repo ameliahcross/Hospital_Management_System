@@ -3,6 +3,7 @@ using HospitalApp.Middlewares;
 using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels.Doctor;
 using Microsoft.AspNetCore.Mvc;
+using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Controllers
 {
@@ -19,6 +20,11 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (!_validateUserSession.HasUser() || _validateUserSession.GetUserRole() != UserRole.Administrador)
+            {
+                return RedirectToRoute(new { controller = "User", action = "Permission" });
+            }
+
             if (!_validateUserSession.HasUser())
             {
                 return RedirectToRoute(new { controller = "User", action = "Index" });

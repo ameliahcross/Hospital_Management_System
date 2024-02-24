@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         if (!_validateUserSession.HasUser())
         {
-            return RedirectToRoute(new { controller = "User", action = "Index" });
+            return RedirectToRoute(new { controller = "User", action = "UserMaintenance" });
         }
         return View();
     }

@@ -51,8 +51,11 @@ UserViewModel User = httpContext.HttpContext.Session.Get<UserViewModel> ("user")
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="LabResult" asp-action="Index">Resultados</a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a>
+                            </li>*@
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="User" asp-action="UserMaintenance">Usuarios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-success" asp-controller="User" asp-action="LogOut">Salir</a>

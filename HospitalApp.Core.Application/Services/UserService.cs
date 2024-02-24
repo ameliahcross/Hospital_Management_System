@@ -6,12 +6,12 @@ using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.Services
 {
-	public class UserService : IUserService
+    public class UserService : IUserService
     {
-		private readonly IUserRepository _repository;
+        private readonly IUserRepository _repository;
 
-		public UserService(IUserRepository useRepository)
-		{
+        public UserService(IUserRepository useRepository)
+        {
             _repository = useRepository;
         }
 
@@ -27,7 +27,8 @@ namespace HospitalApp.Core.Application.Services
                 Email = user.Email,
                 Name = user.Name,
                 LastName = user.LastName,
-                
+                Role = user.Role,
+
             }).ToList();
         }
 
@@ -35,12 +36,14 @@ namespace HospitalApp.Core.Application.Services
         {
             var user = await _repository.GetByIdAsync(id);
             SaveUserViewModel userViewModel = new();
-            userViewModel.Id = userViewModel.Id;
+            userViewModel.Id = user.Id;
             userViewModel.Username = user.Username;
             userViewModel.Password = user.Password;
+            userViewModel.ConfirmPassword = user.Password;
             userViewModel.Email = user.Email;
             userViewModel.Name = user.Name;
             userViewModel.LastName = user.LastName;
+            userViewModel.Role = user.Role;
 
             return userViewModel;
         }
@@ -54,6 +57,7 @@ namespace HospitalApp.Core.Application.Services
             user.Email = userToSave.Email;
             user.Name = userToSave.Name;
             user.LastName = userToSave.LastName;
+            user.Role = userToSave.Role;
 
             await _repository.UpdateAsync(user);
         }
@@ -61,12 +65,16 @@ namespace HospitalApp.Core.Application.Services
         public async Task Add(SaveUserViewModel userToCreate)
         {
             var user = new User
+
             {
+                Id = userToCreate.Id,
                 Username = userToCreate.Username,
                 Password = userToCreate.Password,
                 Email = userToCreate.Email,
                 Name = userToCreate.Name,
-                LastName = userToCreate.LastName
+                LastName = userToCreate.LastName,
+                Role = userToCreate.Role
+
             };
 
             await _repository.AddAsync(user);
@@ -93,8 +101,20 @@ namespace HospitalApp.Core.Application.Services
             userVm.Email = user.Email;
             userVm.Username = user.Username;
             userVm.Password = user.Password;
+            userVm.Role = user.Role;
 
             return userVm;
+        }
+
+        public async Task<bool> ValidateUsername(string username)
+        {
+            var existingUser = await _repository.GetByUsername(username);
+            return existingUser == null;
+        }
+
+        public async Task<User> GetById(int id)
+        {
+            return await _repository.GetByIdAsync(id);
         }
 
     }

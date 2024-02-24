@@ -1,5 +1,4 @@
-﻿using HospitalApp.Core.Application.Interfaces.Repositories;
-using HospitalApp.Core.Application.Interfaces.Services;
+﻿using HospitalApp.Core.Application.Interfaces.Services;
 using HospitalApp.Core.Application.ViewModels.Appointment;
 using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Middlewares;
@@ -26,9 +25,9 @@ namespace HospitalApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            if (! _validateUserSession.HasUser())
+            if (!_validateUserSession.HasUser() || _validateUserSession.GetUserRole() != UserRole.Asistente)
             {
-                return RedirectToRoute(new { controller = "User", action = "Index" });
+                return RedirectToRoute(new { controller = "User", action = "Permission"});
             }
 
             var list = await _service.GetAllViewModel();

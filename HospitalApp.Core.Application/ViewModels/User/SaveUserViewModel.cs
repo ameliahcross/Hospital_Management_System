@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using HospitalApp.Core.Domain.Entities;
 
 namespace HospitalApp.Core.Application.ViewModels.User
 {
@@ -20,7 +21,6 @@ namespace HospitalApp.Core.Application.ViewModels.User
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un correo")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "El correo no es válido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un nombre")]
@@ -28,6 +28,9 @@ namespace HospitalApp.Core.Application.ViewModels.User
 
         [Required(ErrorMessage = "Debe ingresar el apellido")]
         public string LastName { get; set; }
-	}
+
+        [Required(ErrorMessage = "Debe asignar un rol al usuario")]
+        public UserRole Role { get; set; }
+    }
 }
 

@@ -5,8 +5,8 @@ namespace HospitalApp.Core.Domain.Entities
 {
     public enum UserRole
     {
-        Admin,
-        Assistant
+        Administrador,
+        Asistente
     }
 
     public class User : BaseEntity

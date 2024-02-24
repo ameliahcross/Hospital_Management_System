@@ -32,7 +32,10 @@ namespace HospitalApp.Infrastructure.Persistence.Repositories
             return user;
         }
 
-
+        public async Task<User> GetByUsername(string username)
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync(user => user.Username == username);
+        }
     }
 }
 

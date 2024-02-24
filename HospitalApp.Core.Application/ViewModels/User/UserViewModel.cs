@@ -16,6 +16,8 @@ namespace HospitalApp.Core.Application.ViewModels.User
         public string Name { get; set; }
 
         public string LastName { get; set; }
+
+        public UserRole Role { get; set; }
     }
 }
 

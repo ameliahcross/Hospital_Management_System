@@ -1,0 +1,66 @@
+﻿@model List<HospitalApp.Core.Application.ViewModels.User.UserViewModel>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Usuarios</h3>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="row mb-3">
+                <div class="col text-end">
+                    <a asp-controller="User" asp-action="Register" class="btn btn-sm btn-dark">
+                        Registrar usuario <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    @if (Model == null || !Model.Any())
+                    {
+                        <div class="alert alert-danger text-center" role="alert">
+                            No se encontraron usuarios creados
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-success table-striped mx-auto">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Usuario</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Username</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Role</td>
+                                        <td class="text-end">
+                                            <a class="me-3" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">
+                                                <i class="fas fa-edit text-black"></i>
+                                            </a>
+                                            <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">
+                                                <i class="fas fa-trash text-black"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
